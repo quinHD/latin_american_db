@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323221220) do
+ActiveRecord::Schema.define(version: 20160323230555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "act_categories", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "act_categories_acts", id: false, force: :cascade do |t|
+    t.integer "act_category_id"
+    t.integer "act_id"
+  end
+
+  add_index "act_categories_acts", ["act_category_id"], name: "index_act_categories_acts_on_act_category_id", using: :btree
+  add_index "act_categories_acts", ["act_id"], name: "index_act_categories_acts_on_act_id", using: :btree
 
   create_table "act_targets", force: :cascade do |t|
     t.integer  "act_id"
@@ -26,8 +41,8 @@ ActiveRecord::Schema.define(version: 20160323221220) do
 
   create_table "acts", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "name"
-    t.text     "description"
+    t.string   "name",        null: false
+    t.text     "description", null: false
     t.date     "start_date"
     t.date     "end_date"
     t.datetime "deleted_at"
@@ -38,8 +53,8 @@ ActiveRecord::Schema.define(version: 20160323221220) do
   add_index "acts", ["deleted_at"], name: "index_acts_on_deleted_at", using: :btree
 
   create_table "target_categories", force: :cascade do |t|
-    t.integer  "target_id"
-    t.string   "name"
+    t.integer  "target_id",   null: false
+    t.string   "name",        null: false
     t.text     "description"
     t.datetime "deleted_at"
     t.datetime "created_at",  null: false
@@ -49,8 +64,8 @@ ActiveRecord::Schema.define(version: 20160323221220) do
   add_index "target_categories", ["deleted_at"], name: "index_target_categories_on_deleted_at", using: :btree
 
   create_table "target_subcategories", force: :cascade do |t|
-    t.integer  "target_category_id"
-    t.string   "name"
+    t.integer  "target_category_id", null: false
+    t.string   "name",               null: false
     t.text     "description"
     t.datetime "deleted_at"
     t.datetime "created_at",         null: false
@@ -60,7 +75,7 @@ ActiveRecord::Schema.define(version: 20160323221220) do
   add_index "target_subcategories", ["deleted_at"], name: "index_target_subcategories_on_deleted_at", using: :btree
 
   create_table "targets", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",        null: false
     t.text     "description"
     t.datetime "deleted_at"
     t.datetime "created_at",  null: false
@@ -70,8 +85,10 @@ ActiveRecord::Schema.define(version: 20160323221220) do
   add_index "targets", ["deleted_at"], name: "index_targets_on_deleted_at", using: :btree
 
   create_table "users", force: :cascade do |t|
+    t.string   "name"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
+    t.string   "role"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
