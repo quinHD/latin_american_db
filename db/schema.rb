@@ -11,33 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323230555) do
+ActiveRecord::Schema.define(version: 20160323234356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "act_categories", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+  create_table "act_organizations", force: :cascade do |t|
+    t.integer  "act_id"
+    t.integer  "organizable_id",   null: false
+    t.string   "organizable_type", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
-  create_table "act_categories_acts", id: false, force: :cascade do |t|
-    t.integer "act_category_id"
-    t.integer "act_id"
-  end
-
-  add_index "act_categories_acts", ["act_category_id"], name: "index_act_categories_acts_on_act_category_id", using: :btree
-  add_index "act_categories_acts", ["act_id"], name: "index_act_categories_acts_on_act_id", using: :btree
+  add_index "act_organizations", ["deleted_at"], name: "index_act_organizations_on_deleted_at", using: :btree
 
   create_table "act_targets", force: :cascade do |t|
     t.integer  "act_id"
     t.integer  "targetable_id",   null: false
     t.string   "targetable_type", null: false
+    t.datetime "deleted_at"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  add_index "act_targets", ["deleted_at"], name: "index_act_targets_on_deleted_at", using: :btree
 
   create_table "acts", force: :cascade do |t|
     t.integer  "user_id"
@@ -51,6 +50,90 @@ ActiveRecord::Schema.define(version: 20160323230555) do
   end
 
   add_index "acts", ["deleted_at"], name: "index_acts_on_deleted_at", using: :btree
+
+  create_table "acts_categories", id: false, force: :cascade do |t|
+    t.integer "category_id"
+    t.integer "act_id"
+  end
+
+  add_index "acts_categories", ["act_id"], name: "index_acts_categories_on_act_id", using: :btree
+  add_index "acts_categories", ["category_id"], name: "index_acts_categories_on_category_id", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "description"
+    t.datetime "deleted_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "categories", ["deleted_at"], name: "index_categories_on_deleted_at", using: :btree
+
+  create_table "organization_groups", force: :cascade do |t|
+    t.integer  "organization_id"
+    t.string   "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "organization_groups", ["deleted_at"], name: "index_organization_groups_on_deleted_at", using: :btree
+
+  create_table "organization_subgroups", force: :cascade do |t|
+    t.integer  "organization_group_id"
+    t.string   "name"
+    t.datetime "deleted_at"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "organization_subgroups", ["deleted_at"], name: "index_organization_subgroups_on_deleted_at", using: :btree
+
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "supranational"
+    t.string   "number_participants"
+    t.string   "country"
+    t.string   "city"
+    t.string   "province"
+    t.datetime "deleted_at"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "organizations", ["deleted_at"], name: "index_organizations_on_deleted_at", using: :btree
+
+  create_table "places", force: :cascade do |t|
+    t.integer  "act_id"
+    t.string   "name"
+    t.string   "type_of_area"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.string   "country"
+    t.string   "city"
+    t.string   "province"
+    t.datetime "deleted_at"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "places", ["deleted_at"], name: "index_places_on_deleted_at", using: :btree
+
+  create_table "results", force: :cascade do |t|
+    t.integer  "act_id"
+    t.integer  "arrested"
+    t.integer  "deaths"
+    t.integer  "economic_cost"
+    t.integer  "injured"
+    t.integer  "missing"
+    t.integer  "personal_attacks"
+    t.integer  "property_attacks"
+    t.datetime "deleted_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "results", ["deleted_at"], name: "index_results_on_deleted_at", using: :btree
 
   create_table "target_categories", force: :cascade do |t|
     t.integer  "target_id",   null: false

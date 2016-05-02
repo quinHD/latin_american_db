@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 # Use postgresql as the database for Active Record
@@ -31,19 +30,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Added gems
 gem 'jquery-tablesorter'
-
 gem 'devise'
-
 gem "font-awesome-rails"
-
-gem 'slim'
-
+gem 'slim-rails'
 gem 'paranoia'
+gem 'simple_form'
+gem "twitter-bootstrap-rails"
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
+  gem 'annotate'
+  gem 'quiet_assets'
+  gem 'scss_lint', require: false
+  gem 'rubocop', require: false
 end
 
 group :development do
@@ -52,9 +54,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'pry-rails'
-  gem 'quiet_assets'
   gem 'rails-erd'
-  gem 'annotate'
   gem "better_errors"
   gem "binding_of_caller"
 end

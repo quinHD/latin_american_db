@@ -1,0 +1,21 @@
+.side-bar {
+  width: 5rem;
+  height: 100%;
+  float:left;
+}
+
+.side-bar ul{
+  color: #fff;
+}
+
+.side-bar li {
+  text-align: center;
+  padding: 1rem 0rem 0.5rem 0rem;
+}
+
+.side-bar i{
+  font-size: 2rem;
+  color: #6b788b;
+}
+
+

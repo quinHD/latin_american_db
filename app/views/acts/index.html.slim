@@ -1,0 +1,25 @@
+.breadcrumbs
+  = link_to "Acciones", acts_path
+  span.separator= fa_icon "circle"
+  = "List"
+section.action-container
+  .table-header
+    h2 = "Listado de acciones"
+    = fa_icon "download", class: "rounded-icon"
+  table.table.table-striped[summary="Listado de todas las acciones"]
+    thead
+      tr
+        th
+          | Id
+        th
+          | Nombre
+        th[colspan="2"]
+          | Comandos
+    tbody
+      - @acts.each do |act|
+        tr
+          td = act.id
+          td.justified = link_to(act.name, act_path(act))
+          td = link_to 'Editar', edit_act_path(act)
+          td = link_to 'Borrar', act_path(act), method: :delete, data: { confirm: '¿Estás seguro?' }
+          

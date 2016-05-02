@@ -1,0 +1,17 @@
+header
+  .menu-icon
+    = fa_icon "bars"
+  .logo-container
+    div 
+      = "LATIN"
+      span.light-logo
+        = "AMERICA"
+      span.strong-logo
+        = "DB"
+  .user-logged
+    img class="rounded-img" src="https://media.licdn.com/mpr/mpr/shrink_100_100/p/3/005/0ae/3d4/0614152.jpg"
+    a href="/"
+      = User.first.name
+    a href="/" class="header-icon"
+      = fa_icon "sign-out"
+   

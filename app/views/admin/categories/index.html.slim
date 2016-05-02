@@ -1,0 +1,20 @@
+section#categories-container
+  table.table.table-striped[summary="Listado de todas las acciones"]
+    thead
+      tr
+        th
+          | Nº
+        th
+          | Nombre
+        th
+          | Descripción
+        th[colspan="2"]
+          | Comandos
+    tbody
+      - @categories.each_with_index do |category, index|
+        tr
+          td = index + 1
+          td.justified = link_to(category.name, admin_category_path(category))
+          td = category.description
+          td = link_to 'Editar', edit_admin_category_path(category)
+          td = link_to 'Borrar', admin_category_path(category), method: :delete, data: { confirm: '¿Estás seguro?' }

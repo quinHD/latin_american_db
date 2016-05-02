@@ -10,6 +10,43 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require twitter-bootstrap-static/bootstrap
  *= require_self
+ *= require font-awesome
+ *= require common
+ *= require header
+ *= require side_bar
+ *= require_tree ./client/
  */
+
+.main_container {
+  min-height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.breadcrumbs {
+  color: #888;
+  height: 4rem;
+  padding: 1rem 2rem;
+  border-bottom: solid 1px #e7ecf1;
+}
+
+.breadcrumbs a {
+  color: #888;
+}
+
+.action-container {
+  padding: 1.5rem;
+}
+
+.rounded-icon {
+  padding: 1rem;
+  float: right;
+  position: absolute;
+  border-radius: 50%;
+  right: 1rem;
+  bottom: 1rem;
+  border: solid 1px #ccc;
+  color: #666;
+}
