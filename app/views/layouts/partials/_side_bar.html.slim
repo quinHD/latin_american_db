@@ -1,6 +1,6 @@
 nav.side-bar
   ul
     li= fa_icon "search"
-    li= fa_icon "list"
-    li= fa_icon "plus"
-    li= fa_icon "filter"
+    li= link_to(fa_icon("list"), acts_path)
+    li= link_to(fa_icon("plus"), new_act_path)
+    li= link_to(fa_icon("filter"), filter_acts_path)

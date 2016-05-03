@@ -13,9 +13,13 @@
   padding: 1rem 0rem 0.5rem 0rem;
 }
 
-.side-bar i{
+.side-bar i {
   font-size: 2rem;
   color: #6b788b;
+}
+
+.side-bar i:hover {
+  color: #fff;
 }
 
 

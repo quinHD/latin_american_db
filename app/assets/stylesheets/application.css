@@ -19,12 +19,6 @@
  *= require_tree ./client/
  */
 
-.main_container {
-  min-height: 100%;
-  overflow: hidden;
-  background-color: #fff;
-}
-
 .breadcrumbs {
   color: #888;
   height: 4rem;
@@ -49,4 +43,9 @@
   bottom: 1rem;
   border: solid 1px #ccc;
   color: #666;
+}
+
+.rounded-icon:hover {
+  color: #fff;
+  background-color: #ccc;
 }
