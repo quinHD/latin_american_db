@@ -1,2 +1,15 @@
-= render("acts/form_partials/localization_form")
+.breadcrumbs
+  = link_to "Acciones", acts_path
+  span.separator= fa_icon "circle"
+  = "Nueva"
+section.action-container
+  .section-header
+    h2 = "Nueva acción"
+    = fa_icon "floppy-o", class: "rounded-icon"
+  ul.nav.nav-pills
+    li.active
+      a data-toggle="pill" href="#localization-pill" Localización
+    li
+      a data-toggle="pill" href="#typology-pill" Tipología
+  = render("acts/form")
 = link_to "Volver", acts_path

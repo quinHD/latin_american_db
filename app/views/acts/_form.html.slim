@@ -1,0 +1,7 @@
+= simple_form_for [@act] do |f|
+  .tab-content
+    #localization-pill.tab-pane.fade.in.active
+      = render("acts/form_partials/localization_form", f: f)
+    #typology-pill.tab-pane.fade
+      = render("acts/form_partials/typology_form", f: f)
+  = f.button :submit

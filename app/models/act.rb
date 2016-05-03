@@ -16,6 +16,7 @@
 class Act < ActiveRecord::Base
   belongs_to :author, class_name: :User, foreign_key: "user_id"
   has_and_belongs_to_many :categories
+  accepts_nested_attributes_for :categories
   has_many :act_targets
   has_one :result
   has_one :place

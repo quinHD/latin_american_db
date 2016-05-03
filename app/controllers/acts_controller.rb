@@ -1,6 +1,7 @@
 class ActsController < ApplicationController
   def index
-    @acts = Act.all
+    @q = Act.ransack(params[:q])
+    @acts = @q.result(distinct: true)
   end
 
   def show
@@ -40,9 +41,14 @@ class ActsController < ApplicationController
     redirect_to acts_path
   end
 
+  def filter
+    @q = Act.ransack(params[:q])
+    @acts = @q.result(distinct: true)
+  end
+
   private
 
   def act_parameters
-    params.require(:act).permit(:name, :description, :start_date, :end_date)
+    params.require(:act).permit(:name, :description, :start_date, :end_date, category_ids:[])
   end
 end

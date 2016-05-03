@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  get "acts/filter", to: "acts#filter", as: "acts_filter"
   resources :acts
   resources :categories
 end

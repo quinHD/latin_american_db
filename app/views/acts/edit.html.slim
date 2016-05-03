@@ -1,2 +1,7 @@
-= render("acts/form_partials/localization_form")
-= link_to "Volver", acts_path
+.breadcrumbs
+  = link_to "Acciones", acts_path
+  span.separator= fa_icon "circle"
+  = "Editar"
+section.action-container
+  = render("acts/form_partials/localization_form")
+  = link_to "Volver", acts_path
