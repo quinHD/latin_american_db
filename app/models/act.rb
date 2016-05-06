@@ -20,7 +20,6 @@ class Act < ActiveRecord::Base
   belongs_to :creator, class_name: :User, foreign_key: "user_id"
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :authorships
-  accepts_nested_attributes_for :authorships
   has_many :act_targets
   has_many :modifications
   has_one :result
