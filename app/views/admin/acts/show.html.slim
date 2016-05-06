@@ -1,9 +1,31 @@
-h1 = @act.name
-label = "Descripción"
-p = @act.description
-label = "Fecha de inicio"
-div = @act.start_date
-label = "Fecha de fin"
-div = @act.end_date
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+  span.separator= fa_icon "circle"
+  = link_to "Acciones", acts_path
+  span.separator= fa_icon "circle"
+  = "Detalle de acción"
+section.action-container
+  h1 = @act.name
+  label = "Descripción"
+  p = @act.description
+  label = "Fecha de inicio"
+  div = @act.start_date
+  label = "Fecha de fin"
+  div = @act.end_date
 
-= link_to "Volver", acts_path
+  table.table.table-striped[summary="Listado de todas las acciones"]
+    thead
+      tr
+        th Columna
+        th Valor previo
+        th Nuevo valor
+        th Autor
+    tbody
+      - @act.modifications.each do |modification|
+        tr
+          td = modification.column
+          td = modification.from_value
+          td = modification.to_value
+          td = modification.creator.name
+
+  = link_to "Volver", admin_acts_path

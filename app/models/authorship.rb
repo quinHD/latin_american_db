@@ -4,14 +4,18 @@
 #
 #  id               :integer          not null, primary key
 #  act_id           :integer
-#  organizable_id   :integer          not null
-#  organizable_type :string           not null
+#  authorshipable_id   :integer          not null
+#  authorshipable_type :string           not null
 #  deleted_at       :datetime
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
 
-class ActOrganization < ActiveRecord::Base
-  belongs_to :organizable, polymorphic: true, touch: true
+class Authorship < ActiveRecord::Base
+  belongs_to :authorshipable, polymorphic: true, touch: true
   belongs_to :act
+
+  def parent_tree
+    authorshipable.parent_tree
+  end
 end

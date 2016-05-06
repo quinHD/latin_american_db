@@ -9,6 +9,7 @@ class CreatePlaces < ActiveRecord::Migration
       t.string :country
       t.string :city
       t.string :province
+      t.text :description
 
       t.datetime :deleted_at, index: true
       t.timestamps null: false

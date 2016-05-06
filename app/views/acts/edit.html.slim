@@ -3,5 +3,19 @@
   span.separator= fa_icon "circle"
   = "Editar"
 section.action-container
-  = render("acts/form_partials/localization_form")
-  = link_to "Volver", acts_path
+  .section-header
+    h2 = "Editar acción"
+    = fa_icon "floppy-o", class: "rounded-icon"
+  ul.nav.nav-pills
+    li.active
+      a data-toggle="pill" href="#identification-pill" Identificación
+    li
+      a data-toggle="pill" href="#localization-pill" Localización
+    li
+      a data-toggle="pill" href="#authorship-pill" Autoría
+    li
+      a data-toggle="pill" href="#typology-pill" Tipología
+    li
+      a data-toggle="pill" href="#results-pill" Resultados
+  = render("acts/form")
+= link_to "Volver", acts_path

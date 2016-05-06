@@ -1,0 +1,28 @@
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+  span.separator= fa_icon "circle"
+  = link_to "Acciones", admin_acts_path
+  span.separator= fa_icon "circle"
+  = "Objetivos"
+section.action-container
+  .section-header
+    h2 = "Administración de objetivos"
+
+    ul
+      - @targets.each do |target|
+        li
+          .target-tree 
+            h3 = target.name
+            span = target.description
+        li
+          ul 
+            - target.target_categories.each do |target_category|
+              li 
+                h4 = target_category.name
+                span = target_category.description
+              li
+                ul
+                  - target_category.target_subcategories.each do |target_subcategory|
+                    li 
+                      h5 = target_subcategory.name
+                      span = target_subcategory.description

@@ -14,12 +14,32 @@
 #
 
 class Act < ActiveRecord::Base
-  belongs_to :author, class_name: :User, foreign_key: "user_id"
+  acts_as_paranoid
+  after_update :update_modification
+
+  belongs_to :creator, class_name: :User, foreign_key: "user_id"
   has_and_belongs_to_many :categories
-  accepts_nested_attributes_for :categories
+  has_and_belongs_to_many :authorships
+  accepts_nested_attributes_for :authorships
   has_many :act_targets
+  has_many :modifications
   has_one :result
-  has_one :place
+  has_one :place, dependent: :destroy
+  accepts_nested_attributes_for :place
 
   validates :name, presence: true
+
+  private
+
+  def update_modification
+    val = changes.reject {|k,v| k == "updated_at"}
+    val.each do |k,v|
+      modifications.create(
+        creator: User.first, 
+        column: k,
+        from_value: v.first,
+        to_value: v.last
+      )
+    end
+  end
 end

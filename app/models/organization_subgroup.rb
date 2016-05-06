@@ -12,5 +12,9 @@
 
 class OrganizationSubgroup < ActiveRecord::Base
   belongs_to :organization_group
-  has_one :act_organization, as: :organizable, dependent: :destroy
+  has_one :act_organization, as: :authorshipable, dependent: :destroy
+
+  def parent_tree
+    organization_group.parent_tree + " Organization Subgroup: #{name}"
+  end
 end

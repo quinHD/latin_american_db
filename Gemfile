@@ -35,6 +35,7 @@ gem "font-awesome-rails"
 gem 'slim-rails'
 gem 'paranoia'
 gem 'simple_form'
+gem 'country_select'
 gem "twitter-bootstrap-rails"
 gem 'pundit'
 gem 'ransack'
@@ -58,5 +59,6 @@ group :development do
   gem 'rails-erd'
   gem "better_errors"
   gem "binding_of_caller"
+  gem "bullet"
 end
 

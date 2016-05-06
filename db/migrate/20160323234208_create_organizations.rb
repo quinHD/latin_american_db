@@ -5,8 +5,6 @@ class CreateOrganizations < ActiveRecord::Migration
       t.string :supranational
       t.string :number_participants
       t.string :country
-      t.string :city
-      t.string :province
 
       t.datetime :deleted_at, index: true
       t.timestamps null: false

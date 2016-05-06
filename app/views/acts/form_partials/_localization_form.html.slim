@@ -1,4 +1,7 @@
-= f.input :name, placeholder: true
-= f.input :description, placeholder: true
-= f.input :start_date, placeholder: true, include_blank: true
-= f.input :end_date, placeholder: true, include_blank: true
+= f.simple_fields_for :place do |place|
+  = place.input :country, placeholder: true, only: ["UY", "IT", "ES"],  locale: 'es'
+  = place.input :province, placeholder: true
+  = place.input :city, placeholder: true
+  = place.input :name, placeholder: true
+  = place.input :type_of_area, placeholder: true
+  = place.input :description, placeholder: true

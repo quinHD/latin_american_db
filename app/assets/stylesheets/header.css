@@ -21,6 +21,11 @@ header .logo-container {
   float: left;
 }
 
+header .logo-container a {
+  color: #fff;
+  text-decoration: none;
+}
+
 header .logo-container .light-logo {
   color: #bbb;
 }
