@@ -13,9 +13,4 @@ p = OrganizationGroup.new(name: "Group")
 o.organization_groups << p
 p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup")
 
-Authorship.create(authorshipable: o)
-Authorship.create(authorshipable: p)
-Authorship.create(authorshipable: OrganizationSubgroup.last)
-
-
 puts "Seeds complete!"

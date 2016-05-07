@@ -16,6 +16,16 @@ ActiveRecord::Schema.define(version: 20160503224517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "act_organizations", force: :cascade do |t|
+    t.integer  "organizable_id",   null: false
+    t.string   "organizable_type", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "act_organizations", ["deleted_at"], name: "index_act_organizations_on_deleted_at", using: :btree
+
   create_table "act_targets", force: :cascade do |t|
     t.integer  "act_id"
     t.integer  "targetable_id",   null: false
@@ -40,14 +50,6 @@ ActiveRecord::Schema.define(version: 20160503224517) do
 
   add_index "acts", ["deleted_at"], name: "index_acts_on_deleted_at", using: :btree
 
-  create_table "acts_authorships", id: false, force: :cascade do |t|
-    t.integer "authorship_id"
-    t.integer "act_id"
-  end
-
-  add_index "acts_authorships", ["act_id"], name: "index_acts_authorships_on_act_id", using: :btree
-  add_index "acts_authorships", ["authorship_id"], name: "index_acts_authorships_on_authorship_id", using: :btree
-
   create_table "acts_categories", id: false, force: :cascade do |t|
     t.integer "category_id"
     t.integer "act_id"
@@ -55,16 +57,6 @@ ActiveRecord::Schema.define(version: 20160503224517) do
 
   add_index "acts_categories", ["act_id"], name: "index_acts_categories_on_act_id", using: :btree
   add_index "acts_categories", ["category_id"], name: "index_acts_categories_on_category_id", using: :btree
-
-  create_table "authorships", force: :cascade do |t|
-    t.integer  "authorshipable_id",   null: false
-    t.string   "authorshipable_type", null: false
-    t.datetime "deleted_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "authorships", ["deleted_at"], name: "index_authorships_on_deleted_at", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",        null: false

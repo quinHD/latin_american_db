@@ -13,7 +13,7 @@
 class OrganizationGroup < ActiveRecord::Base
   belongs_to :organization
   has_many :organization_subgroups
-  has_one :act_organization, as: :authorshipable, dependent: :destroy
+  has_one :act_organization, as: :organizable, dependent: :destroy
 
   def parent_tree
     organization.parent_tree + " Organization Group: #{name}"
