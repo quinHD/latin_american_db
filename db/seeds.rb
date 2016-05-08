@@ -9,8 +9,16 @@ u.save
 
 
 o = Organization.create(name: "Organizon", supranational: true)
-p = OrganizationGroup.new(name: "Group")
+p = OrganizationGroup.new(name: "Groupamen")
+o.organization_groups << p
+p = OrganizationGroup.new(name: "Groupamen2")
+o.organization_groups << p
+p = OrganizationGroup.new(name: "Groupamen3")
 o.organization_groups << p
 p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup")
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup2")
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup3")
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup4")
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup5")
 
 puts "Seeds complete!"

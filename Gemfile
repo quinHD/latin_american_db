@@ -37,6 +37,7 @@ gem 'paranoia'
 gem 'simple_form'
 gem 'country_select'
 gem "twitter-bootstrap-rails"
+gem 'twitter-typeahead-rails'
 gem 'pundit'
 gem 'ransack'
 

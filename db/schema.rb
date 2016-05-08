@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20160503224517) do
 
   add_index "act_organizations", ["deleted_at"], name: "index_act_organizations_on_deleted_at", using: :btree
 
+  create_table "act_organizations_acts", force: :cascade do |t|
+    t.integer "act_id"
+    t.integer "act_organization_id"
+  end
+
+  add_index "act_organizations_acts", ["act_id"], name: "index_act_organizations_acts_on_act_id", using: :btree
+  add_index "act_organizations_acts", ["act_organization_id"], name: "index_act_organizations_acts_on_act_organization_id", using: :btree
+
   create_table "act_targets", force: :cascade do |t|
     t.integer  "act_id"
     t.integer  "targetable_id",   null: false
