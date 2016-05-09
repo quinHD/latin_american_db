@@ -1,16 +1,5 @@
 <%= javascript_tag do %>
-  var numbers = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('organization'),
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: <%= collection.map { |org| {organization: org.name} }.to_json.html_safe %>
-  });
+  var colors = ["red", "blue", "green", "yellow", "brown", "black"];
+  $('.<%= klass %>').typeahead({ source: colors});
 
-  // initialize the bloodhound suggestion engine
-  numbers.initialize();
-
-
-  $('.<%= klass %>').typeahead(null, {
-    displayKey: 'organization',
-    source: numbers.ttAdapter()
-  });
 <% end %>

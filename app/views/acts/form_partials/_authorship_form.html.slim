@@ -1,12 +1,7 @@
-= f.association :act_organizations, collection: Organization.all
-= f.association :act_organizations, label: "Organization Group", collection: OrganizationGroup.all
-  input.typeahead placeholder=("States of USA") type="text"
-= f.association :act_organizations, label: "Organization Subgroup", collection: OrganizationSubgroup.all
-
 = text_field_tag :act_organization, nil, class: "typeahead-organization"
-= text_field_tag :act_organization, nil, class: "typeahead-group"
-= text_field_tag :act_organization, nil, class: "typeahead-subgroup"
+= text_field_tag :act_organization2, nil, class: "typeahead-group"
+= text_field_tag :act_organization3, nil, class: "typeahead-subgroup"
 
 = render("acts/form_partials/authorship_bloodhound.js.erb", collection: Organization.all, klass: "typeahead-organization")
-= render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationGroup.all, klass: "typeahead-group")
-= render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationSubgroup.all, klass: "typeahead-subgroup")
+/= render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationGroup.all, klass: "typeahead-group")
+/= render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationSubgroup.all, klass: "typeahead-subgroup")
