@@ -1,6 +1,6 @@
-input#act_organization.typeahead-organization.tt-input autocomplete="off" dir="auto" name="act_organizations[]" spellcheck="false" style=("position: relative; vertical-align: top; background-color: transparent;") type="text" 
-input#act_organization.typeahead-group.tt-input autocomplete="off" dir="auto" name="act_organizations[]" spellcheck="false" style=("position: relative; vertical-align: top; background-color: transparent;") type="text" 
-input#act_organization.typeahead-subgroup.tt-input autocomplete="off" dir="auto" name="act_organizations[]" spellcheck="false" style=("position: relative; vertical-align: top; background-color: transparent;") type="text" 
+= f.input :act_organizations, input_html: { name: "act[act_organizations][1][organization]", class: "typeahead-organization"}, label: "Organización"
+= f.input :act_organizations, input_html: { name: "act[act_organizations][1][group]", class: "typeahead-group"}, label: "Grupo"
+= f.input :act_organizations, input_html: { name: "act[act_organizations][1][subgroup]", class: "typeahead-subgroup"}, label: "Subgrupo"
 
 = render("acts/form_partials/authorship_bloodhound.js.erb", collection: Organization.all, klass: "typeahead-organization")
 = render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationGroup.all, klass: "typeahead-group")

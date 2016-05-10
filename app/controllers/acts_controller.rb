@@ -59,6 +59,8 @@ class ActsController < ApplicationController
                                                    :name,
                                                    :type_of_area,
                                                    :description
-                                                   ])
+                                                   ],
+                                act_organizations: [:organization, :group, :subgroup]
+                                )
   end
 end
