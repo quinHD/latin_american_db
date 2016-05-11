@@ -1,4 +1,5 @@
-= f.input :name, placeholder: true
-= f.input :description, placeholder: true
-= f.input :start_date, placeholder: true, include_blank: true
-= f.input :end_date, placeholder: true, include_blank: true
+= f.simple_fields_for :identification do |ff|
+  = ff.input :name, placeholder: true
+  = ff.input :description, placeholder: true, as: :text
+  = ff.input :start_date, placeholder: true, include_blank: true, as: :date
+  = ff.input :end_date, placeholder: true, include_blank: true, as: :date

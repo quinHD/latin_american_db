@@ -1,7 +1,7 @@
 class ActsController < ApplicationController
   def index
     @q = Act.ransack(params[:q])
-    @acts = @q.result(distinct: true).includes(:categories)
+    @acts = @q.result(distinct: true).includes(:categories, :act_organizations).order(id: :asc)
   end
 
   def show
@@ -14,11 +14,11 @@ class ActsController < ApplicationController
   end
 
   def create
-    binding.pry
-    @act = Act.new(act_parameters)
-    if @act.save
+    @act_form = ActCreator.new(act_parameters)
+    if @act_form.save
       redirect_to acts_path
     else
+      @act = Act.new
       render :new
     end
   end
@@ -32,6 +32,7 @@ class ActsController < ApplicationController
     if @act.update(act_parameters)
       redirect_to @act
     else
+      @act = Act.new
       render :new
     end
   end
@@ -51,16 +52,11 @@ class ActsController < ApplicationController
   private
 
   def act_parameters
-    params.require(:act).permit(:name, :description, :start_date, :end_date, :city, :province, category_ids:[],
-                                place_attributes: [:id,
-                                                   :country,
-                                                   :province,
-                                                   :city,
-                                                   :name,
-                                                   :type_of_area,
-                                                   :description
-                                                   ],
-                                act_organizations: [:organization, :group, :subgroup]
-                                )
+    params.require(:act).permit(
+      identification: [:name, :description, :start_date, :end_date, :city, :province, category_ids:[]],
+      localization: [:id, :country, :province, :city, :name, :type_of_area, :description],
+      typology: [category_ids: []],
+      authorship: [:organization, :group, :subgroup]
+    )
   end
 end

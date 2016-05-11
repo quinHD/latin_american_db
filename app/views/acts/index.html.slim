@@ -16,6 +16,7 @@ section.action-container
         th Nombre
         th Fecha Inicio
         th Categorías
+        th Organizacion
         th[colspan="2"] Comandos
     tbody
       - @acts.each do |act|
@@ -24,6 +25,7 @@ section.action-container
           td.justified = link_to(act.name, act_path(act))
           td = act.start_date
           td = act.categories.map {|c| c.name}.to_sentence
+          td = act.act_organizations.map {|ao| ao.organization.name}.to_sentence
           td = link_to 'Editar', edit_act_path(act)
           td = link_to 'Borrar', act_path(act), method: :delete, data: { confirm: '¿Estás seguro?' }
           

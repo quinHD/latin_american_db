@@ -17,9 +17,15 @@
 class Organization < ActiveRecord::Base
   has_many :organization_groups
   has_one :act_organization, as: :organizable, dependent: :destroy
+  validates :name, presence: true
+  validates :name, uniqueness: true, allow_blank: false
 
   def parent_tree
     "Organization: #{name}"
+  end
+
+  def organization
+    self
   end
 end
 
