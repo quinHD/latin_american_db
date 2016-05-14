@@ -11,22 +11,27 @@ class ActCreator
     @act = Act.new(@identification)
     save_typology
     save_authorship
-    @act.save
+    save_localization
+    if @act.save
+      @act
+    else
+      false
+    end
   end
 
   private
 
   def save_authorship
     act_organization = subgroup || group || organization 
-    binding.pry
-    @act.act_organizations.new(organizable: act_organization)
+    @act.act_organizations.new(organizable: act_organization) if act_organization
   end
 
   def save_typology
     @act.update(@typology)
   end
 
-  def localization_persister
+  def save_localization
+    @act.place = Place.new(@localization)
   end
 
   def organization

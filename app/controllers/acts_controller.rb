@@ -1,4 +1,6 @@
 class ActsController < ApplicationController
+  wrap_parameters Act
+
   def index
     @q = Act.ransack(params[:q])
     @acts = @q.result(distinct: true).includes(:categories, :act_organizations).order(id: :asc)
@@ -14,8 +16,9 @@ class ActsController < ApplicationController
   end
 
   def create
-    @act_form = ActCreator.new(act_parameters)
-    if @act_form.save
+    binding.pry
+    @act = ActCreator.new(act_parameters)
+    if @act.save
       redirect_to acts_path
     else
       @act = Act.new
@@ -24,10 +27,12 @@ class ActsController < ApplicationController
   end
 
   def edit
-    @act = Act.find(params[:id])
+    @act = ActForm.new(Act.find(params[:id]))
+    binding.pry
   end
 
   def update
+    binding.pry
     @act = Act.find(params[:id])
     if @act.update(act_parameters)
       redirect_to @act

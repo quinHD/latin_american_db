@@ -7,8 +7,8 @@ a.act_targets << at
 u.acts << a
 u.save
 
-Category.create("Amenaza", description: "EEEPA")
-Category.create("Asesinato", description: "EEEPA")
+Category.create(name: "Amenaza", description: "EEEPA")
+Category.create(name: "Asesinato", description: "EEEPA")
 
 
 o = Organization.create(name: "Organizon", supranational: true)

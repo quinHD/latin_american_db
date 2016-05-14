@@ -1,9 +1,8 @@
-= f.simple_fields_for :authorship do |ff|
-  = ff.input :act_organizations, input_html: { name: "act[authorship][organization]", class: "typeahead-organization"}, label: "Organización"
-  = ff.input :act_organizations, input_html: { name: "act[authorship][group]", class: "typeahead-group"}, label: "Grupo"
-  = ff.input :act_organizations, input_html: { name: "act[authorship][subgroup]", class: "typeahead-subgroup"}, label: "Subgrupo"
+/ = f.input :act_organizations, input_html: { name: "act[authorship][organization]", class: "typeahead-organization"}, label: "Organización"
+/ = f.input :act_organizations, input_html: { name: "act[authorship][group]", class: "typeahead-group"}, label: "Grupo"
+/ = f.input :act_organizations, input_html: { name: "act[authorship][subgroup]", class: "typeahead-subgroup"}, label: "Subgrupo"
 
-= render("acts/form_partials/authorship_bloodhound.js.erb", collection: Organization.all, klass: "typeahead-organization")
-= render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationGroup.all, klass: "typeahead-group")
-= render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationSubgroup.all, klass: "typeahead-subgroup")
+/ = render("acts/form_partials/authorship_bloodhound.js.erb", collection: Organization.all, klass: "typeahead-organization")
+/ = render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationGroup.all, klass: "typeahead-group")
+/ = render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationSubgroup.all, klass: "typeahead-subgroup")
 
