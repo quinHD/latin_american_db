@@ -1,8 +1,12 @@
-/ = f.input :act_organizations, input_html: { name: "act[authorship][organization]", class: "typeahead-organization"}, label: "Organización"
+= f.association :act_organizations, collection: ActOrganization.organizations.includes(:organizable).map{|o| [o.organizable.name, o.id]}
+= f.association :act_organizations, collection: ActOrganization.groups.includes(:organizable).map{|o| [o.organizable.name, o.id]}
+
+
+/= f.input :act_organizations, input_html: { class: "typeahead-organization", value: ""}, label: "Organización"
 / = f.input :act_organizations, input_html: { name: "act[authorship][group]", class: "typeahead-group"}, label: "Grupo"
 / = f.input :act_organizations, input_html: { name: "act[authorship][subgroup]", class: "typeahead-subgroup"}, label: "Subgrupo"
 
-/ = render("acts/form_partials/authorship_bloodhound.js.erb", collection: Organization.all, klass: "typeahead-organization")
-/ = render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationGroup.all, klass: "typeahead-group")
-/ = render("acts/form_partials/authorship_bloodhound.js.erb", collection: OrganizationSubgroup.all, klass: "typeahead-subgroup")
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.organizations.includes(:organizable), klass: "typeahead-organization")
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.groups.includes(:organizable), klass: "typeahead-group")
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.subgroups.includes(:organizable), klass: "typeahead-subgroup")
 

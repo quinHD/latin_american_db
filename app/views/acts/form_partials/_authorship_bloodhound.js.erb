@@ -1,6 +1,6 @@
 <%= javascript_tag do %>
   var organizations = new Bloodhound({
-    local: <%= collection.map { |org| {id: org.id, organization: org.name} }.to_json.html_safe %>,
+    local: <%= collection.map { |org| {id: org.id, organization: org.organizable.name} }.to_json.html_safe %>,
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('organization'),
     queryTokenizer: Bloodhound.tokenizers.whitespace
   });

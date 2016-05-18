@@ -13,6 +13,10 @@ class ActOrganization < ActiveRecord::Base
   belongs_to :organizable, polymorphic: true, touch: true
   belongs_to :act
 
+  scope :organizations, -> { where(organizable_type: "Organization") }
+  scope :groups, -> { where(organizable_type: "OrganizationGroup") }
+  scope :subgroups, -> { where(organizable_type: "OrganizationSubgroup") }
+
   def organization
     organizable.organization
   end

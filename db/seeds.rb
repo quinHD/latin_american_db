@@ -11,17 +11,18 @@ Category.create(name: "Amenaza", description: "EEEPA")
 Category.create(name: "Asesinato", description: "EEEPA")
 
 
-o = Organization.create(name: "Organizon", supranational: true)
-p = OrganizationGroup.new(name: "Groupamen")
+o = Organization.create(name: "Organizon", supranational: true, act_organization_attributes: {})
+p = OrganizationGroup.new(name: "Groupamen", act_organization_attributes: {})
 o.organization_groups << p
-p = OrganizationGroup.new(name: "Groupamen2")
+p = OrganizationGroup.new(name: "Groupamen2", act_organization_attributes: {})
 o.organization_groups << p
-p = OrganizationGroup.new(name: "Groupamen3")
+p = OrganizationGroup.new(name: "Groupamen3", act_organization_attributes: {})
 o.organization_groups << p
-p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup")
-p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup2")
-p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup3")
-p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup4")
-p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup5")
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup", act_organization_attributes: {})
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup2", act_organization_attributes: {})
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup3", act_organization_attributes: {})
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup4", act_organization_attributes: {})
+p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup5", act_organization_attributes: {})
 
 puts "Seeds complete!"
+

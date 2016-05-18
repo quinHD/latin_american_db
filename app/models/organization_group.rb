@@ -14,6 +14,7 @@ class OrganizationGroup < ActiveRecord::Base
   belongs_to :organization
   has_many :organization_subgroups
   has_one :act_organization, as: :organizable, dependent: :destroy
+  accepts_nested_attributes_for :act_organization, allow_destroy: true
   validates :name, uniqueness: true, allow_blank: false
   validates_length_of :name, minimum: 2, allow_nil: true, allow_blank: false
 

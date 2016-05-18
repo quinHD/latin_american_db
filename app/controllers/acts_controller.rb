@@ -16,8 +16,7 @@ class ActsController < ApplicationController
   end
 
   def create
-    binding.pry
-    @act = ActCreator.new(act_parameters)
+    @act = Act.new(act_parameters)
     if @act.save
       redirect_to acts_path
     else
@@ -27,8 +26,7 @@ class ActsController < ApplicationController
   end
 
   def edit
-    @act = ActForm.new(Act.find(params[:id]))
-    binding.pry
+    @act = Act.find(params[:id])
   end
 
   def update
@@ -58,10 +56,8 @@ class ActsController < ApplicationController
 
   def act_parameters
     params.require(:act).permit(
-      identification: [:name, :description, :start_date, :end_date, :city, :province, category_ids:[]],
-      localization: [:id, :country, :province, :city, :name, :type_of_area, :description],
-      typology: [category_ids: []],
-      authorship: [:organization, :group, :subgroup]
+      :name, :description, :start_date, :end_date,
+      act_organization_ids: []
     )
   end
 end
