@@ -1,25 +1,54 @@
-= f.simple_fields_for :act_organizations do |ff|
-  = render("acts/form_partials/act_organization_fields", act_organization: ff, index: object_id)
-= link_to_add_fields("Add item", f, :act_organizations)
+= f.hidden_field :act_organizations, value: "[]"
+= f.input :organization, input_html: { class: "typeahead-organization", value: "" }, label: "Organización"
+= f.input :group, input_html: { class: "typeahead-group", value: "" }, label: "Grupo"
+= f.input :subgroup, input_html: { class: "typeahead-subgroup", value: "" }, label: "Subgrupo"
+= link_to "Add", "#", class: "btn", id: "add-organization-btn"
+
+table.organizations
+  tr
+    th ="Organización"
+    th ="Grupo"
+    th ="Subgrupo"
+    th =""
+  tr
+    td = "Hola"
+    td = "Hola"
+    td = "Hola"
+    td = fa_icon("trash")
+
+
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.organizations.includes(:organizable), klass: "typeahead-organization")
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.groups.includes(:organizable), klass: "typeahead-group")
+= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.subgroups.includes(:organizable), klass: "typeahead-subgroup")
 
 javascript:
+  $("#add-organization-btn").on("click", function(){
+    var organization, group, subgroup;
 
-  var ready;
+    $organization = $("#act_organization")
+    $group = $("#act_group")
+    $subgroup = $("#act_subgroup")
+    $("table.organizations").append(
+      '<tr> ' +
+        '<td>' + $organization.val() + '</td>' +
+        '<td>' + $group.val() + '</td>' +
+        '<td>' + $subgroup.val() + '</td>' +
+        '<td> <i class="fa fa-trash"></i> </td>' +
+      "</tr> " 
+    )
+    var ids = $subgroup.attr("data-selected_id") || $group.attr("data-selected_id") || $organization.attr("data-selected_id");
+    $("#act_act_organizations").val(ids);
+  })
+  
 
-  ready = function() {
-    $('form').on('click', '.btn-remove-fields', function(event) {
-      $(this).prev('input[type=hidden]').val('1');
-      $(this).closest('fieldset').hide();
-      return event.preventDefault();
-    });
-    return $('form').on('click', '.add_fields', function(event) {
-      var regexp, time;
-      time = new Date().getTime();
-      regexp = new RegExp($(this).data('id'), 'g');
-      $(this).before($(this).data('fields').replace(regexp, time));
-      return event.preventDefault();
-    });
-  };
-
-  $(document).ready(ready);
-  $(document).on('page:load', ready);
+/ if(organization.length > 0) {
+/   var category = "organization";
+/   var selected_organizations = organization;
+/ } else if(group.length > 0) {
+/   var category = "group";
+/   var selected_organizations = group;
+/ } else if(subgroupgroup.length > 0) {
+/   var category = "subgroupgroup";
+/   var selected_organizations = subgroup;
+/ }
+/ encodeURIComponent(JSON.stringify({category:"John"}))

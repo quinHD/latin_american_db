@@ -22,9 +22,8 @@
 
 
   $('.typeahead-organization').bind('typeahead:select', function(ev, suggestion) {
-    console.log('Selection:', suggestion.organization);
-    $("#act_act_organizations_org_organizations").val("")
-    $('.typeahead-organization').typeahead('val', ""); 
+    $(this).attr("data-selected_id", suggestion.id)
+    console.log('Selection: ', suggestion.organization);
   });
 
 <% end %>
