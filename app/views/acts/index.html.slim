@@ -28,4 +28,4 @@ section.action-container
           td = act.act_organizations.map {|ao| ao.organizable.name}.to_sentence
           td = link_to 'Editar', edit_act_path(act)
           td = link_to 'Borrar', act_path(act), method: :delete, data: { confirm: '¿Estás seguro?' }
-          
+         

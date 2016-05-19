@@ -3,7 +3,7 @@ class ActsController < ApplicationController
 
   def index
     @q = Act.ransack(params[:q])
-    @acts = @q.result(distinct: true).includes(:categories, :act_organizations).order(id: :asc)
+    @acts = @q.result(distinct: true).includes(:categories, act_organizations: :organizable).order(id: :asc)
   end
 
   def show
@@ -16,6 +16,7 @@ class ActsController < ApplicationController
   end
 
   def create
+    binding.pry
     @act = Act.new(act_parameters)
     if @act.save
       redirect_to acts_path
@@ -57,7 +58,7 @@ class ActsController < ApplicationController
   def act_parameters
     params.require(:act).permit(
       :name, :description, :start_date, :end_date,
-      act_organization_ids: []
+      act_organizations: [:id, :organization, :group, :subgroup, :_destroy]
     )
   end
 end

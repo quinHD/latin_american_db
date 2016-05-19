@@ -1,12 +1,25 @@
-= f.association :act_organizations, collection: ActOrganization.organizations.includes(:organizable).map{|o| [o.organizable.name, o.id]}
-= f.association :act_organizations, collection: ActOrganization.groups.includes(:organizable).map{|o| [o.organizable.name, o.id]}
+= f.simple_fields_for :act_organizations do |ff|
+  = render("acts/form_partials/act_organization_fields", act_organization: ff, index: object_id)
+= link_to_add_fields("Add item", f, :act_organizations)
 
+javascript:
 
-/= f.input :act_organizations, input_html: { class: "typeahead-organization", value: ""}, label: "Organización"
-/ = f.input :act_organizations, input_html: { name: "act[authorship][group]", class: "typeahead-group"}, label: "Grupo"
-/ = f.input :act_organizations, input_html: { name: "act[authorship][subgroup]", class: "typeahead-subgroup"}, label: "Subgrupo"
+  var ready;
 
-= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.organizations.includes(:organizable), klass: "typeahead-organization")
-= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.groups.includes(:organizable), klass: "typeahead-group")
-= render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.subgroups.includes(:organizable), klass: "typeahead-subgroup")
+  ready = function() {
+    $('form').on('click', '.btn-remove-fields', function(event) {
+      $(this).prev('input[type=hidden]').val('1');
+      $(this).closest('fieldset').hide();
+      return event.preventDefault();
+    });
+    return $('form').on('click', '.add_fields', function(event) {
+      var regexp, time;
+      time = new Date().getTime();
+      regexp = new RegExp($(this).data('id'), 'g');
+      $(this).before($(this).data('fields').replace(regexp, time));
+      return event.preventDefault();
+    });
+  };
 
+  $(document).ready(ready);
+  $(document).on('page:load', ready);

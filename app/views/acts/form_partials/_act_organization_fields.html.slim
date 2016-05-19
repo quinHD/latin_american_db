@@ -1,0 +1,16 @@
+fieldset
+  = act_organization.input :org_organizations, input_html: { name: "act[act_organizations][#{index}][organizations]", class: "typeahead-organization", value: ""}, label: "Organización"
+  = act_organization.input :org_groups, input_html: { name: "act[act_organizations][#{index}][groups]", class: "typeahead-group", value: ""}, label: "Grupo"
+  = act_organization.input :org_subgroups, input_html: { name: "act[act_organizations][#{index}][subgroups]", class: "typeahead-subgroup", value: ""}, label: "Subgrupo"
+  = act_organization.hidden_field :_destroy, input_html: { name: "act[act_organizations][#{index}][_destroy]" }
+  = link_to '#', class: "btn-remove-fields" do
+    = fa_icon "times"
+
+  = render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.organizations.includes(:organizable), klass: "typeahead-organization")
+  = render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.groups.includes(:organizable), klass: "typeahead-group")
+  = render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.subgroups.includes(:organizable), klass: "typeahead-subgroup")
+
+
+/ name: "act[act_organizations][1][organization]",
+/ name: "act[act_organizations][1][group]",
+/ name: "act[act_organizations][1][subgroup]",
