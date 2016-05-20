@@ -17,7 +17,7 @@ class ActOrganization < ActiveRecord::Base
   scope :groups, -> { where(organizable_type: "OrganizationGroup") }
   scope :subgroups, -> { where(organizable_type: "OrganizationSubgroup") }
 
-  def organization
-    organizable.organization
+  def group_by_type
+    organizable.group_by_type
   end
 end

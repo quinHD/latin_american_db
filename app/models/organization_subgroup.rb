@@ -17,11 +17,7 @@ class OrganizationSubgroup < ActiveRecord::Base
   validates :name, uniqueness: true, allow_blank: false
   validates_length_of :name, minimum: 2, allow_nil: true, allow_blank: false
 
-  def parent_tree
-    organization_group.parent_tree + " Organization Subgroup: #{name}"
-  end
-
-  def organization
-    organization_group.organization
+  def group_by_type
+    organization_group.group_by_type.merge( { organization_subgroup: name } )
   end
 end

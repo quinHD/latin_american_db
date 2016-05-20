@@ -21,12 +21,9 @@ class Organization < ActiveRecord::Base
   validates :name, uniqueness: true, allow_blank: false
   validates_length_of :name, minimum: 2, allow_nil: true, allow_blank: false
 
-  def parent_tree
-    "Organization: #{name}"
+  def group_by_type
+    { organization: name }
   end
 
-  def organization
-    self
-  end
 end
 

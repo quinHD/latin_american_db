@@ -22,6 +22,7 @@ class ActsController < ApplicationController
       redirect_to acts_path
     else
       @act = Act.new
+      @act.build_place
       render :new
     end
   end
@@ -58,7 +59,9 @@ class ActsController < ApplicationController
   def act_parameters
     params.require(:act).permit(
       :name, :description, :start_date, :end_date,
-      act_organizations: [:id, :organization, :group, :subgroup, :_destroy]
+      act_organizations: [:id, :organization, :group, :subgroup, :_destroy],
+      place_attributes: [:id, :country, :province, :city, :name, :type_of_area, :description],
+      act_organization_ids: [], category_ids: []
     )
   end
 end

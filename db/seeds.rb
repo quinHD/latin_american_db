@@ -11,6 +11,7 @@ Category.create(name: "Amenaza", description: "EEEPA")
 Category.create(name: "Asesinato", description: "EEEPA")
 
 
+Organization.create(name: "Organamen", supranational: false, act_organization_attributes: {})
 o = Organization.create(name: "Organizon", supranational: true, act_organization_attributes: {})
 p = OrganizationGroup.new(name: "Groupamen", act_organization_attributes: {})
 o.organization_groups << p
