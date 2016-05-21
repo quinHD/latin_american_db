@@ -20,4 +20,8 @@ class OrganizationSubgroup < ActiveRecord::Base
   def group_by_type
     organization_group.group_by_type.merge( { organization_subgroup: name } )
   end
+
+  def act_organization_hierarchy
+    organization.act_organization_hierarchy << act_organization
+  end
 end

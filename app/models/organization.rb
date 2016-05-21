@@ -25,5 +25,8 @@ class Organization < ActiveRecord::Base
     { organization: name }
   end
 
+  def act_organization_hierarchy
+    [act_organization]
+  end
 end
 

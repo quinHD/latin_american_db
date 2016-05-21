@@ -17,6 +17,15 @@ section.action-container
       = f.label :name_or_description_or_act_types_name_cont
       = f.search_field :name_or_description_or_act_types_name_cont
     .filter-form-field
+      = f.label :act_organizations
+      = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.where(organizable_type: "Organization"), :id, :name), prompt: "<select one>"
+    .filter-form-field
+      = f.label :act_organizations_id_eq
+      = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.where(organizable_type: "OrganizationGroup"), :id, :name), prompt: "<select one>"
+    .filter-form-field
+      = f.label :act_organizations_id_eq
+      = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.where(organizable_type: "OrganizationSubgroup"), :id, :name), prompt: "<select one>"
+    .filter-form-field
       = f.label :start_date_gteq
       = f.date_select :start_date_gteq, include_blank: true, start_year: 1960, end_year: 1980
     .filter-form-field

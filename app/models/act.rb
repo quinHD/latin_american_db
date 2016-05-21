@@ -27,7 +27,19 @@ class Act < ActiveRecord::Base
   accepts_nested_attributes_for :place
   accepts_nested_attributes_for :result
 
+  has_many :act_organizations_extended
+
   validates :name, presence: true
+
+  def self.extended_search(extended_search_params)
+    return all if extended_search_params.blank?
+    search_act_organization_ids = extended_search_params[:act_organizations].reject(&:blank?)
+    all.select{ |act| search_act_organization_ids.map(&:to_i).all? { |org| act.act_organizations_extended.map(&:id).include?(org) }}
+  end
+
+  def act_organizations_extended
+    act_organizations.reduce([]) { |a, e| a | e.act_organization_hierarchy }
+  end
 
   private
 
@@ -42,4 +54,5 @@ class Act < ActiveRecord::Base
       )
     end
   end
+
 end

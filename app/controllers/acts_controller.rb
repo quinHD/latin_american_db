@@ -3,7 +3,7 @@ class ActsController < ApplicationController
 
   def index
     @q = Act.ransack(params[:q])
-    @acts = @q.result(distinct: true).includes(:act_types, act_organizations: :organizable).order(id: :asc)
+    @acts = @q.result(distinct: true).includes(:act_types, act_organizations: :organizable, act_targets: :targetable).order(id: :asc).extended_search(params[:extended_search])
   end
 
   def show
@@ -17,7 +17,6 @@ class ActsController < ApplicationController
   end
 
   def create
-    binding.pry
     @act = Act.new(act_parameters)
     if @act.save
       redirect_to acts_path
@@ -34,7 +33,6 @@ class ActsController < ApplicationController
   end
 
   def update
-    binding.pry
     @act = Act.find(params[:id])
     if @act.update(act_parameters)
       redirect_to @act
