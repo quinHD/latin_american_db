@@ -14,4 +14,12 @@
 class ActTarget < ActiveRecord::Base
   belongs_to :targetable, polymorphic: true, touch: true
   belongs_to :act
+
+  scope :targets, -> { where(targetable_type: "Target") }
+  scope :target_categories, -> { where(targetable_type: "TargetCategory") }
+  scope :target_subcategories, -> { where(targetable_type: "TargetSubcategory") }
+
+  def group_by_type
+    targetable.group_by_type
+  end
 end

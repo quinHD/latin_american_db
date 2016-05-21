@@ -3,7 +3,7 @@ class ActsController < ApplicationController
 
   def index
     @q = Act.ransack(params[:q])
-    @acts = @q.result(distinct: true).includes(:categories, act_organizations: :organizable).order(id: :asc)
+    @acts = @q.result(distinct: true).includes(:act_types, act_organizations: :organizable).order(id: :asc)
   end
 
   def show
@@ -13,6 +13,7 @@ class ActsController < ApplicationController
   def new
     @act = Act.new
     @act.build_place
+    @act.build_result
   end
 
   def create
@@ -23,6 +24,7 @@ class ActsController < ApplicationController
     else
       @act = Act.new
       @act.build_place
+      @act.build_result
       render :new
     end
   end
@@ -59,9 +61,11 @@ class ActsController < ApplicationController
   def act_parameters
     params.require(:act).permit(
       :name, :description, :start_date, :end_date,
-      act_organizations: [:id, :organization, :group, :subgroup, :_destroy],
       place_attributes: [:id, :country, :province, :city, :name, :type_of_area, :description],
-      act_organization_ids: [], category_ids: []
+      act_organization_ids: [], 
+      act_type_ids: [],
+      act_target_ids: [],
+      result_attributes: [:id, :arrested, :deaths, :economic_cost, :injured, :missing, :personal_attacks, :property_attacks]
     )
   end
 end

@@ -18,13 +18,14 @@ class Act < ActiveRecord::Base
   after_update :update_modification
 
   belongs_to :creator, class_name: :User, foreign_key: "user_id"
-  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :act_types
   has_and_belongs_to_many :act_organizations
   has_many :act_targets
   has_many :modifications
   has_one :result
   has_one :place, dependent: :destroy
   accepts_nested_attributes_for :place
+  accepts_nested_attributes_for :result
 
   validates :name, presence: true
 

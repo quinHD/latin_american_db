@@ -7,9 +7,8 @@ a.act_targets << at
 u.acts << a
 u.save
 
-Category.create(name: "Amenaza", description: "EEEPA")
-Category.create(name: "Asesinato", description: "EEEPA")
-
+ActType.create(name: "Amenaza", description: "EEEPA")
+ActType.create(name: "Asesinato", description: "EEEPA")
 
 Organization.create(name: "Organamen", supranational: false, act_organization_attributes: {})
 o = Organization.create(name: "Organizon", supranational: true, act_organization_attributes: {})
@@ -24,6 +23,22 @@ p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup2", act_orga
 p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup3", act_organization_attributes: {})
 p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup4", act_organization_attributes: {})
 p.organization_subgroups << OrganizationSubgroup.new(name: "Subgroup5", act_organization_attributes: {})
+
+
+Target.create(name: "Targetamen", act_target_attributes: {})
+o = Target.create(name: "Targetizon", act_target_attributes: {})
+p = TargetCategory.new(name: "Categoramen", act_target_attributes: {})
+o.target_categories << p
+p = TargetCategory.new(name: "Categoramen2", act_target_attributes: {})
+o.target_categories << p
+p = TargetCategory.new(name: "Categoramen3", act_target_attributes: {})
+o.target_categories << p
+p.target_subcategories << TargetSubcategory.new(name: "Subgrupamen", act_target_attributes: {})
+p.target_subcategories << TargetSubcategory.new(name: "Subgrupamen2", act_target_attributes: {})
+p.target_subcategories << TargetSubcategory.new(name: "Subgrupamen3", act_target_attributes: {})
+p.target_subcategories << TargetSubcategory.new(name: "Subgrupamen4", act_target_attributes: {})
+p.target_subcategories << TargetSubcategory.new(name: "Subgrupamen5", act_target_attributes: {})
+
 
 puts "Seeds complete!"
 

@@ -13,4 +13,9 @@
 class Target < ActiveRecord::Base
   has_many :target_categories
   has_one :act_target, as: :targetable, dependent: :destroy
+  accepts_nested_attributes_for :act_target, allow_destroy: true
+
+  def group_by_type
+    { target: name }
+  end
 end

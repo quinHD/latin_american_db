@@ -1,4 +1,4 @@
-section#categories-container
+section#act_types-container
   table.table.table-striped[summary="Listado de todas las acciones"]
     thead
       tr
@@ -11,10 +11,10 @@ section#categories-container
         th[colspan="2"]
           | Comandos
     tbody
-      - @categories.each_with_index do |category, index|
+      - @act_types.each_with_index do |act_type, index|
         tr
           td = index + 1
-          td.justified = link_to(category.name, admin_category_path(category))
-          td = category.description
-          td = link_to 'Editar', edit_admin_category_path(category)
-          td = link_to 'Borrar', admin_category_path(category), method: :delete, data: { confirm: '¿Estás seguro?' }
+          td.justified = link_to(act_type.name, admin_act_type_path(act_type))
+          td = act_type.description
+          td = link_to 'Editar', edit_admin_act_type_path(act_type)
+          td = link_to 'Borrar', admin_act_type_path(act_type), method: :delete, data: { confirm: '¿Estás seguro?' }

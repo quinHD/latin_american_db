@@ -11,11 +11,11 @@ section.action-container
       = f.label :name_cont
       = f.search_field :name_cont
     .filter-form-field
-      = f.label :categories_name_cont
-      = f.search_field :categories_name_cont
+      = f.label :act_types_name_cont
+      = f.search_field :act_types_name_cont
     .filter-form-field
-      = f.label :name_or_description_or_categories_name_cont
-      = f.search_field :name_or_description_or_categories_name_cont
+      = f.label :name_or_description_or_act_types_name_cont
+      = f.search_field :name_or_description_or_act_types_name_cont
     .filter-form-field
       = f.label :start_date_gteq
       = f.date_select :start_date_gteq, include_blank: true, start_year: 1960, end_year: 1980

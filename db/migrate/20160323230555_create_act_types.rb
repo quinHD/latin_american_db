@@ -1,6 +1,6 @@
-class CreateCategories < ActiveRecord::Migration
+class CreateActTypes < ActiveRecord::Migration
   def change
-    create_table :categories do |t|
+    create_table :act_types do |t|
       t.string :name, null: false
       t.string :description
 
@@ -8,8 +8,8 @@ class CreateCategories < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :acts_categories, id: false do |t|
-      t.belongs_to :category, index: true
+    create_table :act_types_acts, id: false do |t|
+      t.belongs_to :act_type, index: true
       t.belongs_to :act, index: true
     end
   end

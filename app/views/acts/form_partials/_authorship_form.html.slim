@@ -2,7 +2,7 @@
 = f.input :organization, input_html: { class: "typeahead-organization", value: "" }, label: "Organización"
 = f.input :group, input_html: { class: "typeahead-group", value: "" }, label: "Grupo"
 = f.input :subgroup, input_html: { class: "typeahead-subgroup", value: "" }, label: "Subgrupo"
-= link_to "Add", "#", class: "btn", id: "add-organization-btn"
+= link_to "Add", "#", class: "btn", id: "add-act-organization-btn"
 
 table.organizations
   tr
@@ -15,16 +15,15 @@ table.organizations
       td = act_organization.group_by_type[:organization]
       td = act_organization.group_by_type[:organization_group]
       td = act_organization.group_by_type[:organization_subgroup]
-      td = link_to fa_icon("trash"), "#", class: "remove-organization-btn"
+      td = link_to fa_icon("trash"), "#", class: "remove-act-organization-btn"
       input value=act_organization.id type="hidden" name="act[act_organization_ids][]"
-
 
 = render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.organizations.includes(:organizable), klass: "typeahead-organization")
 = render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.groups.includes(:organizable), klass: "typeahead-group")
 = render("acts/form_partials/authorship_bloodhound.js.erb", collection: ActOrganization.subgroups.includes(:organizable), klass: "typeahead-subgroup")
 
 javascript:
-  $("#add-organization-btn").on("click", function(){
+  $("#add-act-organization-btn").on("click", function(){
     var $organization, $group, $subgroup, organizable_id ;
 
     $organization = $("#act_organization");
@@ -45,7 +44,7 @@ javascript:
     resetOrganizationInputs($organization, $group, $subgroup);
   })
   
-  $("table.organizations").on("click", ".remove-organization-btn", function(){
+  $("table.organizations").on("click", ".remove-act-organization-btn", function(){
     $(this).closest('tr').remove();
   });
 

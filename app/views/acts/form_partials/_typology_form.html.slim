@@ -1,2 +1,52 @@
-= f.collection_select(:category_ids, Category.all, :id, :name, {include_blank: "Please select", selected: 1}, { multiple: true } )
+= f.association :act_types
+= f.input :target, collection: ActTarget.targets.includes(:targetable).map{ |tgt| [tgt.targetable.name, tgt.id] }, label: "Objetivo", selected: 1, include_blank: true
+= f.input :target_category, collection: ActTarget.target_categories.includes(:targetable).map{ |tgt| [tgt.targetable.name, tgt.id] }, label: "Categoría", selected: 1, include_blank: true
+= f.input :target_subcategory, collection: ActTarget.target_subcategories.includes(:targetable).map{ |tgt| [tgt.targetable.name, tgt.id] }, label: "Subcategoría", selected: 1, include_blank: true
+= link_to "Add", "#", class: "btn", id: "add-act-target-btn"
+
+
+table.targets
+  tr
+    th ="Objetivo"
+    th ="Categoría"
+    th ="Subcategoría"
+    th =""
+  - @act.act_targets.each do |act_target|
+    tr
+      td = act_target.group_by_type[:target]
+      td = act_target.group_by_type[:target_category]
+      td = act_target.group_by_type[:target_subcategory]
+      td = link_to fa_icon("trash"), "#", class: "remove-act-target-btn"
+      input value=act_target.id type="hidden" name="act[act_target_ids][]"
+
+javascript:
+  $("#add-act-target-btn").on("click", function(){
+    var $target, $category, $subcategory, targetable_id;
+
+    $target = $("#act_target option:selected");
+    $category = $("#act_target_category option:selected");
+    $subcategory = $("#act_target_subcategory option:selected");
+    targetable_id = $subcategory.val() || 
+                     $category.val() || 
+                     $target.val();
+    $("table.targets").append(
+      '<tr name=target-row-' + targetable_id + ' data-row=' + targetable_id + '> ' +
+        '<td>' + $target.text() + '</td>' +
+        '<td>' + $category.text() + '</td>' +
+        '<td>' + $subcategory.text() + '</td>' +
+        '<td> <a class="remove-target-btn" href="#"><i class="fa fa-trash"></i></a> </td>' +
+        '<input value='+ targetable_id +' type="hidden" name="act[act_target_ids][]" >' + 
+      "</tr> " 
+    );  
+    resetTargetInputs($target, $category, $subcategory);
+  })
   
+  $("table.targets").on("click", ".remove-act-target-btn", function(){
+    $(this).closest('tr').remove();
+  });
+
+  function resetTargetInputs ($target, $category, $subcategory) {
+    $subcategory.removeAttr("data-selected_id");
+    $category.removeAttr("data-selected_id");
+    $target.removeAttr("data-selected_id");
+  }

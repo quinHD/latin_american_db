@@ -45,6 +45,24 @@ ActiveRecord::Schema.define(version: 20160503224517) do
 
   add_index "act_targets", ["deleted_at"], name: "index_act_targets_on_deleted_at", using: :btree
 
+  create_table "act_types", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "description"
+    t.datetime "deleted_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "act_types", ["deleted_at"], name: "index_act_types_on_deleted_at", using: :btree
+
+  create_table "act_types_acts", id: false, force: :cascade do |t|
+    t.integer "act_type_id"
+    t.integer "act_id"
+  end
+
+  add_index "act_types_acts", ["act_id"], name: "index_act_types_acts_on_act_id", using: :btree
+  add_index "act_types_acts", ["act_type_id"], name: "index_act_types_acts_on_act_type_id", using: :btree
+
   create_table "acts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",        null: false
@@ -57,24 +75,6 @@ ActiveRecord::Schema.define(version: 20160503224517) do
   end
 
   add_index "acts", ["deleted_at"], name: "index_acts_on_deleted_at", using: :btree
-
-  create_table "acts_categories", id: false, force: :cascade do |t|
-    t.integer "category_id"
-    t.integer "act_id"
-  end
-
-  add_index "acts_categories", ["act_id"], name: "index_acts_categories_on_act_id", using: :btree
-  add_index "acts_categories", ["category_id"], name: "index_acts_categories_on_category_id", using: :btree
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name",        null: false
-    t.string   "description"
-    t.datetime "deleted_at"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "categories", ["deleted_at"], name: "index_categories_on_deleted_at", using: :btree
 
   create_table "modifications", force: :cascade do |t|
     t.integer  "user_id",    null: false

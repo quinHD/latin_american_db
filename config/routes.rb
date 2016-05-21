@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/", to: "site#panel", as: "root"
     resources :acts
-    resources :categories
+    resources :act_types
     resources :users
     resources :targets do
       resources :target_categories do
