@@ -22,7 +22,6 @@
 
   $('.<%= klass %>').bind('typeahead:select', function(ev, suggestion) {
     $(this).attr("data-selected_id", suggestion.id)
-    console.log('Selection: ', suggestion.organization);
   });
 
 <% end %>
