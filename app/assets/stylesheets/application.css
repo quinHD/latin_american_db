@@ -16,7 +16,6 @@
  *= require common
  *= require header
  *= require side_bar
- *= require_tree ./client/
  */
 
 .flash {
