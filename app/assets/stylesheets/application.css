@@ -19,6 +19,35 @@
  *= require_tree ./client/
  */
 
+.flash {
+  position: absolute;
+  top: 10rem;
+  padding: 1rem;
+  left: 35%;
+  right: 35%;
+  border-radius: 2px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  z-index: 10;
+}
+ 
+.flash.notice {
+  background-color: #d3e8a3;
+  border: solid 1px #568e14;
+}
+
+.flash.alert {
+  background-color: #f9afad;
+  border: solid 1px #c13828;
+}
+
+.error {
+  padding: 2px 4px;
+  background-color: #f9afad;
+  border: solid 1px #c13828;
+}
+
 .breadcrumbs {
   color: #888;
   height: 4rem;

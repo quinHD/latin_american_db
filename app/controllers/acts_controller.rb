@@ -19,11 +19,12 @@ class ActsController < ApplicationController
   def create
     @act = Act.new(act_parameters)
     if @act.save
+      flash.notice = "Acción creada con éxito"
       redirect_to acts_path
     else
-      @act = Act.new
       @act.build_place
       @act.build_result
+      flash.now[:alert] = "Errores en el formulario"
       render :new
     end
   end
@@ -37,7 +38,6 @@ class ActsController < ApplicationController
     if @act.update(act_parameters)
       redirect_to @act
     else
-      @act = Act.new
       render :new
     end
   end

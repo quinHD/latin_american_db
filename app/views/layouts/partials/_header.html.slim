@@ -14,4 +14,9 @@ header
       = User.first.name
     a href="/" class="header-icon"
       = fa_icon "sign-out"
+  - if flash.notice.present?
+    span.flash.notice = flash.notice 
+  - if flash.alert.present?
+    span.flash.alert = flash.alert 
+
    
