@@ -16,6 +16,7 @@
  *= require common
  *= require header
  *= require side_bar
+ *= require acts
  */
 
 .flash {

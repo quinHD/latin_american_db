@@ -7,14 +7,12 @@
 section.action-container
   .section-header
     h2 = "Acción en Detalle"
+    = link_to fa_icon("pencil-square-o", class: "rounded-icon"), edit_act_path(@act)
 
-    h1 = @act.name
-    label = "Descripción"
-    p = @act.description
-    label = "Fecha de inicio"
-    div = @act.start_date
-    label = "Fecha de fin"
-    div = @act.end_date
+  = render("acts/partials/identification")
+  = render("acts/partials/localization") if @act.place.present?
+  = render("acts/partials/authorship") if @act.act_organizations.present?
+  = render("acts/partials/typology") if @act.act_targets.present?
+  = render("acts/partials/results") if @act.result.present?
 
-    = link_to "Volver", acts_path
-
+= link_to "Volver", acts_path

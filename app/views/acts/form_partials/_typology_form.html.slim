@@ -10,7 +10,7 @@ table.targets.table.table-striped
     th ="Categoría"
     th ="Subcategoría"
     th =""
-  - @act.act_targets.each do |act_target|
+  - @act.act_targets.includes(:targetable).each do |act_target|
     tr
       td = act_target.group_by_type[:target]
       td = act_target.group_by_type[:target_category]

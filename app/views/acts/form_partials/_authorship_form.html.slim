@@ -10,7 +10,7 @@ table.organizations.table.table-striped
     th ="Grupo"
     th ="Subgrupo"
     th =""
-  - @act.act_organizations.each do |act_organization|
+  - @act.act_organizations.includes(:organizable).each do |act_organization|
     tr
       td = act_organization.group_by_type[:organization]
       td = act_organization.group_by_type[:organization_group]

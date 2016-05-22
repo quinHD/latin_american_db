@@ -1,0 +1,12 @@
+article.show.authorship
+  h3 = "Autoría"
+  table.organizations.table.table-striped
+    tr
+      th ="Organización"
+      th ="Grupo"
+      th ="Subgrupo"
+    - @act.act_organizations.includes(:organizable).each do |act_organization|
+      tr
+        td = act_organization.group_by_type[:organization]
+        td = act_organization.group_by_type[:organization_group]
+        td = act_organization.group_by_type[:organization_subgroup]

@@ -3,5 +3,7 @@
   = ff.input :province, placeholder: true
   = ff.input :city, placeholder: true
   = ff.input :name, placeholder: true
-  = ff.input :type_of_area, placeholder: true
+  = ff.collection_radio_buttons :type_of_area, [["Rural", "Rural"] ,["No Rural", "No rural"]], :first, :last, checked: "Rural"
   = ff.input :description, placeholder: true
+
+

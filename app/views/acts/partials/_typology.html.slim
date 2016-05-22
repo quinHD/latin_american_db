@@ -1,0 +1,16 @@
+article.show.typology
+  h3 = "Tipología"
+  label = "Tipo de acción"
+  ul
+    - @act.act_types.each do |act_type|
+      li = act_type.name
+  table.targets.table.table-striped
+    tr
+      th ="Objetivo"
+      th ="Categoría"
+      th ="Subcategoría"
+    - @act.act_targets.includes(:targetable).each do |act_target|
+      tr
+        td = act_target.group_by_type[:target]
+        td = act_target.group_by_type[:target_category]
+        td = act_target.group_by_type[:target_subcategory]
