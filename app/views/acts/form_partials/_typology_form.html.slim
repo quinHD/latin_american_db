@@ -1,9 +1,8 @@
-= f.association :act_types
-= f.input :target, collection: ActTarget.targets.includes(:targetable).map{ |tgt| [tgt.targetable.name, tgt.id] }, label: "Objetivo", selected: 1, include_blank: true
-= f.input :target_category, collection: [], label: "Categoría", selected: 1, include_blank: true
-= f.input :target_subcategory, collection: [], label: "Subcategoría", selected: 1, include_blank: true
+= f.association :act_types, include_blank: "<select option>"
+= f.input :target, collection: ActTarget.targets.includes(:targetable).map{ |tgt| [tgt.targetable.name, tgt.id] }, label: "Objetivo", selected: 0, include_blank: "<select option>"
+= f.input :target_category, collection: [], label: "Categoría", selected: 0, disabled: true, include_blank: "<select option>"
+= f.input :target_subcategory, collection: [], label: "Subcategoría", selected: 0, disabled: true, include_blank: "<select option>"
 = link_to "Add", "#", class: "btn", id: "add-act-target-btn"
-
 
 table.targets
   tr
@@ -22,11 +21,13 @@ table.targets
 javascript:
   $("#act_target").on("change", function(){
     $target = $("#act_target option:selected");
-    $.get("http://localhost:3333/acts/3/act_targets/"+$target.val()+"/update_targets.js", { html_id: "act_target_category" }, function success (){console.log("todo ok")})
+    $.get("/acts/3/act_targets/"+$target.val()+"/update_targets.js", { html_id: "act_target_category" }, function success (){console.log("todo ok")});
+    $("#act_target_category").removeAttr('disabled');
   });
   $("#act_target_category").on("change", function(){
     $target_category = $("#act_target_category option:selected");
-    $.get("http://localhost:3333/acts/3/act_targets/"+$target_category.val()+"/update_targets.js", { html_id: "act_target_subcategory" }, function success (){console.log("todo ok")})
+    $.get("/acts/3/act_targets/"+$target_category.val()+"/update_targets.js", { html_id: "act_target_subcategory" }, function success (){console.log("todo ok")});
+    $("#act_target_subcategory").removeAttr('disabled');
   });
 
   $("#add-act-target-btn").on("click", function(){
@@ -38,11 +39,12 @@ javascript:
     targetable_id = $subcategory.val() || 
                      $category.val() || 
                      $target.val();
+
     $("table.targets").append(
       '<tr name=target-row-' + targetable_id + ' data-row=' + targetable_id + '> ' +
-        '<td>' + $target.text() + '</td>' +
-        '<td>' + $category.text() + '</td>' +
-        '<td>' + $subcategory.text() + '</td>' +
+        '<td>' + ($target.val() ? $target.text() : "") + '</td>' +
+        '<td>' + ($category.val() ? $category.text() : "") + '</td>' +
+        '<td>' + ($subcategory.val() ? $subcategory.text() : "") + '</td>' +
         '<td> <a class="remove-target-btn" href="#"><i class="fa fa-trash"></i></a> </td>' +
         '<input value='+ targetable_id +' type="hidden" name="act[act_target_ids][]" >' + 
       "</tr> " 
