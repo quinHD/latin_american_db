@@ -18,4 +18,8 @@ class Target < ActiveRecord::Base
   def group_by_type
     { target: name }
   end
+
+  def act_target_hierarchy
+    [act_target]
+  end
 end

@@ -20,4 +20,8 @@ class TargetCategory < ActiveRecord::Base
   def group_by_type
     target.group_by_type.merge( { target_category: name } )
   end
+
+  def act_target_hierarchy
+    target.act_target_hierarchy << act_target
+  end
 end

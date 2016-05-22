@@ -19,7 +19,15 @@ class ActTarget < ActiveRecord::Base
   scope :target_categories, -> { where(targetable_type: "TargetCategory") }
   scope :target_subcategories, -> { where(targetable_type: "TargetSubcategory") }
 
+  def name
+    targetable.name
+  end
+
   def group_by_type
     targetable.group_by_type
+  end
+
+  def act_target_hierarchy
+    targetable.act_target_hierarchy
   end
 end

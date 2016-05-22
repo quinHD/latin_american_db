@@ -22,6 +22,6 @@ class OrganizationSubgroup < ActiveRecord::Base
   end
 
   def act_organization_hierarchy
-    organization.act_organization_hierarchy << act_organization
+    organization_group.act_organization_hierarchy << act_organization
   end
 end
