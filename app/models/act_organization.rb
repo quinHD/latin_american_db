@@ -28,4 +28,8 @@ class ActOrganization < ActiveRecord::Base
   def act_organization_hierarchy
     organizable.act_organization_hierarchy
   end
+
+  def children
+    organizable
+  end
 end

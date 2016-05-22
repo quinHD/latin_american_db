@@ -24,4 +24,8 @@ class TargetCategory < ActiveRecord::Base
   def act_target_hierarchy
     target.act_target_hierarchy << act_target
   end
+
+  def children
+    target_subcategories.map{ |ts| [ts.act_target.id, ts.name] }  
+  end
 end

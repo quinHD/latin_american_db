@@ -30,4 +30,8 @@ class ActTarget < ActiveRecord::Base
   def act_target_hierarchy
     targetable.act_target_hierarchy
   end
+
+  def children
+    targetable.children
+  end
 end

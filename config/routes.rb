@@ -18,7 +18,20 @@ Rails.application.routes.draw do
     end
   end
 
-  get "acts/filter", to: "acts#filter", as: "filter_acts"
-  resources :acts
+  resources :acts do
+    collection do 
+      get "filter"
+    end
+    resources :act_organizations, only:[] do
+      member do
+        get "update_organizations"
+      end
+    end
+    resources :act_targets, only:[] do
+      member do
+        get "update_targets"
+      end
+    end
+  end
   resources :categories
 end
