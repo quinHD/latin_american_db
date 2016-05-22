@@ -20,12 +20,12 @@ class Act < ActiveRecord::Base
   belongs_to :creator, class_name: :User, foreign_key: "user_id"
   has_and_belongs_to_many :act_types
   has_and_belongs_to_many :act_organizations
-  has_many :act_targets
-  has_many :modifications
+  has_and_belongs_to_many :act_targets
   has_one :result
+  accepts_nested_attributes_for :result
   has_one :place, dependent: :destroy
   accepts_nested_attributes_for :place
-  accepts_nested_attributes_for :result
+  has_many :modifications
 
   has_many :act_organizations_extended
   has_many :act_targets_extended

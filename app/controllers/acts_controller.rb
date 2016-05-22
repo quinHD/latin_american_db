@@ -17,6 +17,7 @@ class ActsController < ApplicationController
   end
 
   def create
+    binding.pry
     @act = Act.new(act_parameters)
     if @act.save
       flash.notice = "Acción creada con éxito"
@@ -34,6 +35,7 @@ class ActsController < ApplicationController
   end
 
   def update
+    binding.pry
     @act = Act.find(params[:id])
     if @act.update(act_parameters)
       redirect_to @act
@@ -58,7 +60,7 @@ class ActsController < ApplicationController
 
   def act_parameters
     params.require(:act).permit(
-      :name, :description, :start_date, :end_date,
+      :name, :description, :start_date, :end_date, :note,
       place_attributes: [:id, :country, :province, :city, :name, :type_of_area, :description],
       act_organization_ids: [], 
       act_type_ids: [],

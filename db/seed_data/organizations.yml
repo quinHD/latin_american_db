@@ -1,0 +1,156 @@
+-
+  name: "Super Pack"
+  initial_amount: 0
+  step: 1
+  min_purchasable: 0
+  max_purchasable: 200
+  pack_catalog_item:
+    -
+      amount: 30
+      catalog_item_id: 1
+    -
+      amount: 1
+      catalog_item_id: 2
+    -
+      amount: 1
+      catalog_item_id: 3
+-
+  name: "VIP Pack"
+  initial_amount: 0
+  step: 1
+  min_purchasable: 0
+  max_purchasable: 200
+  pack_catalog_item:
+    -
+      amount: 1
+      catalog_item_id: 2
+    -
+      amount: 1
+      catalog_item_id: 3
+
+- 
+  name: "Personas"
+  target_category:
+    - name: "Fuerzas y Cuerpos Seguridad
+      target_subcategory:
+        - name: "Policía/Agente"
+        - name: "Patrulla FFSS"
+        - name: "Oficial FFSS"
+        - name: "Cuerpo"
+    - name: "Fuerzas Armadas"
+      target_subcategory:
+        - name: "Oficiales"
+        - name: "Suboficiales y Personal de tropa"
+        - name: "Patrulla FFAA"
+    - name: "Grupos Paramilitares"
+    - name: "Servicios Inteligencia"
+    - name: "Seguridad Privada"
+    - name: "Instituciones políticas/administrativas"
+      target_subcategory:
+        - name: "Jefes de Estado"
+        - name: "Primeros ministros/Presidentes"
+        - name: "Miembros Gobierno"
+        - name: "Altos Funcionarios Administración"
+        - name: "Políticos"
+    - name: "Instituciones Judiciales/Penitenciarias"
+      target_subcategory:
+        - name: "Personal general Administración Justicia"
+        - name: "Personal Instituciones Penitenciarias"
+        - name: "Jueces"
+    - name: "Instituciones Educativas"
+    - name: "Representaciones Diplomáticas"
+      target_subcategory:
+        - name: "Diplomáticos extranjeros"
+        - name: "Personal embajadas/consulados"
+    - name: "Empresas/Industria"
+      target_subcategory:
+    - name: "Medios de comunicación"
+    - name: "Otros"
+      target_subcategory:
+        - name: "Ciudadanos independientes"
+        - name: "Espacios públicos"
+        - name: "Personal otros sectores específicos"
+- 
+  name: "Infraestructuras/Propiedades"
+  target_category:
+    - name: "Fuerzas y Cuerpos Seguridad"
+      target_subcategory:
+        - name: "Edificios e infraestructura")
+        - name: "Puestos de control")
+    - name: "Fuerzas Armadas"
+      target_subcategory:
+        - name: "Edificios e infraestructura"
+        - name: "Puestos de control"
+    - name: "Grupos Paramilitares"
+      target_subcategory:
+        - name: "Edificios e infraestructura"
+    - name: "Servicios Inteligencia"
+      target_subcategory:
+        - name: "Edificios e infraestructura"
+    - name: "Seguridad Privada"
+      target_subcategory:
+        - name: "Edificios e infraestructura"
+    - name: "Instituciones políticas/administrativas"
+      target_subcategory:
+        - name: "Partidos Políticos"
+        - name: "Gobierno/Administración"
+    - name: "Infraestructuras Públicas"
+      target_subcategory:
+        - name: "Aeropuestos"
+        - name: "Puertos"
+        - name: "Estaciones autobuses y Buses"
+        - name: "Lineas FFCC y Trenes"
+        - name: "Metro"
+        - name: "Puentes y carreteras"
+        - name: "Espacios públicos"
+        - name: "Espacios públicos simbólicos"
+        - name: "Monumentos"
+        - name: "Infraestructuras Energéticas"
+        - name: "Infraestructuras de Agua"
+    - name: "Instituciones Judiciales/Penitenciarias"
+      target_subcategory:
+        - name: "Instituciones Judiciales"
+        - name: "Sistema Penitenciario"
+    - name: "Instituciones Educativas"
+      target_subcategory:
+        - name: "Edificios e infraestructura"
+        - name: "Embajadas/Consulados"
+    - name: "Empresas/Industria"
+      target_subcategory:
+        - name: "Banca/Finanzas"
+        - name: "Industria"
+        - name: "Restauración/Ocio"
+        - name: "Corporaciones Multinacionales"
+        - name: "Médicas/Farmacéuticas"
+        - name: "Minería"
+        - name: "Construcción"
+        - name: "Pequeño/Mediano comercio"
+    - name: "Propiedades Privadas"
+      target_subcategory:
+        - name: "Domicilios"
+        - name: "Vehículos privados"
+    - name: "Medios de comunicación"
+      target_subcategory:
+        - name: "Edificios e infraestructura"
+        - name: "Infraestructuras de comunicación"
+    - name: "Otros"
+      target_subcategory:
+        - name: "Aviones en vuelo"
+        - name: "Actos políticos"
+- name: "Propaganda"
+    - name: "Tomas"
+      target_subcategory:
+        - name: "Cines"
+        - name: "Espacios Laborales"
+        - name: "Poblaciones"
+        - name: "Medios Comunicación"
+        - name: "Transporte"
+        - name: "Centros/espacios educativos"
+        - name: "Instituciones políticas/gobierno"
+        - name: "Embajadas/consulados"
+    - name: "Agitación"
+    - name: "Artefactos de propaganda"
+    - name: "Pintadas"
+    - name: "Reparto de Propaganda"
+    - name: "Reparto de Alimentos"
+

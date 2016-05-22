@@ -16,6 +16,7 @@ class TargetCategory < ActiveRecord::Base
   has_many :target_subcategories
   has_one :act_target, as: :targetable, dependent: :destroy
   accepts_nested_attributes_for :act_target, allow_destroy: true
+  accepts_nested_attributes_for :target_subcategories, allow_destroy: true
 
   def group_by_type
     target.group_by_type.merge( { target_category: name } )

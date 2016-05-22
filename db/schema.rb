@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20160503224517) do
   add_index "act_organizations_acts", ["act_organization_id"], name: "index_act_organizations_acts_on_act_organization_id", using: :btree
 
   create_table "act_targets", force: :cascade do |t|
-    t.integer  "act_id"
     t.integer  "targetable_id",   null: false
     t.string   "targetable_type", null: false
     t.datetime "deleted_at"
@@ -44,6 +43,14 @@ ActiveRecord::Schema.define(version: 20160503224517) do
   end
 
   add_index "act_targets", ["deleted_at"], name: "index_act_targets_on_deleted_at", using: :btree
+
+  create_table "act_targets_acts", force: :cascade do |t|
+    t.integer "act_id"
+    t.integer "act_target_id"
+  end
+
+  add_index "act_targets_acts", ["act_id"], name: "index_act_targets_acts_on_act_id", using: :btree
+  add_index "act_targets_acts", ["act_target_id"], name: "index_act_targets_acts_on_act_target_id", using: :btree
 
   create_table "act_types", force: :cascade do |t|
     t.string   "name",        null: false
@@ -66,9 +73,10 @@ ActiveRecord::Schema.define(version: 20160503224517) do
   create_table "acts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",        null: false
-    t.text     "description", null: false
-    t.date     "start_date"
+    t.text     "description"
+    t.date     "start_date",  null: false
     t.date     "end_date"
+    t.string   "note"
     t.datetime "deleted_at"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
