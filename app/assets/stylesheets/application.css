@@ -65,11 +65,12 @@
 
 .rounded-icon {
   padding: 1rem;
+  margin-left: .5rem;
   float: right;
-  position: absolute;
+  position: relative;
   border-radius: 50%;
   right: 1rem;
-  bottom: 1rem;
+  bottom: -2rem;
   border: solid 1px #ccc;
   color: #666;
 }
@@ -77,4 +78,12 @@
 .rounded-icon:hover {
   color: #fff;
   background-color: #ccc;
+}
+
+.quick-search {
+  float: right;
+  position: relative;
+  bottom: -2rem;
+  border: solid 1px #ccc;
+  color: #666;
 }

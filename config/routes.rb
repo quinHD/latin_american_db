@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :acts do
     collection do 
       get "filter"
+      get "search"
     end
     resources :act_organizations, only:[] do
       member do

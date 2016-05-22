@@ -9,6 +9,9 @@ section.action-container
     - else
       h2 = "Listado de acciones"
     = fa_icon "download", class: "rounded-icon"
+    form
+      = fa_icon "search", class: "rounded-icon search"
+      input.quick-search type="text"
   table.table.table-striped[summary="Listado de todas las acciones"]
     thead
       tr
@@ -31,3 +34,11 @@ section.action-container
           td = link_to 'Editar', edit_act_path(act)
           td = link_to 'Borrar', act_path(act), method: :delete, data: { confirm: '¿Estás seguro?' }
          
+javascript:
+  $(".quick-search").on("keyup", function () {
+    $.ajax({
+      url: "/acts/search/",
+      data: { key: $(".quick-search").val() },
+      success: function(response) { console.log(response) }
+    });
+  });

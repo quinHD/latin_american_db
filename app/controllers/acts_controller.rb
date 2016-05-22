@@ -56,6 +56,13 @@ class ActsController < ApplicationController
     @acts = @q.result(distinct: true)
   end
 
+  def search
+    key = "%#{params[:key].downcase}%"
+    @acts = Act.where('lower(name) LIKE :search OR lower(description) LIKE :search ', search: key)
+    @html_id = "table-striped"
+    respond_to :js
+  end
+
   private
 
   def act_parameters
