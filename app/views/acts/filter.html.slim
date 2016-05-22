@@ -7,41 +7,41 @@ section.action-container
     h2 = "Filtrar acciones"
     = fa_icon "floppy-o", class: "rounded-icon"
   = search_form_for @q do |f|
-    .filter-form-field
+    .filter-form-field.form-group
       = f.label :name_cont
-      = f.search_field :name_cont
+      = f.search_field :name_cont, class: "form-control"
     .filter-form-field
       = f.label :act_types_name_cont
-      = f.search_field :act_types_name_cont
-    .filter-form-field
+      = f.search_field :act_types_name_cont, class: "form-control"
+    .filter-form-field.form-group
       = f.label :name_or_description_or_act_types_name_cont
-      = f.search_field :name_or_description_or_act_types_name_cont
-    .filter-form-field
+      = f.search_field :name_or_description_or_act_types_name_cont, class: "form-control"
+    .filter-form-field.form-group
       = f.label :action_organization
       = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.includes(:organizable).where(organizable_type: "Organization"), :id, :name), prompt: "<select one>"
-    .filter-form-field
+    .filter-form-field.form-group
       = f.label :action_group
       = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.includes(:organizable).where(organizable_type: "OrganizationGroup"), :id, :name), prompt: "<select one>"
-    .filter-form-field
+    .filter-form-field.form-group
       = f.label :action_subgroup
       = select_tag "extended_search[act_organizations][]", options_from_collection_for_select(ActOrganization.includes(:organizable).where(organizable_type: "OrganizationSubgroup"), :id, :name), prompt: "<select one>"
 
-    .filter-form-field
+    .filter-form-field.form-group
       = f.label :action_target
       = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.includes(:targetable).where(targetable_type: "Target"), :id, :name), prompt: "<select one>"
-    .filter-form-field
+    .filter-form-field.form-group
       = f.label :action_target_category
       = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.includes(:targetable).where(targetable_type: "TargetCategory"), :id, :name), prompt: "<select one>"
-    .filter-form-field
+    .filter-form-field.form-group
       = f.label :action_target_subcategory
       = select_tag "extended_search[act_targets][]", options_from_collection_for_select(ActTarget.includes(:targetable).where(targetable_type: "TargetSubcategory"), :id, :name), prompt: "<select one>"
 
-    .filter-form-field
+    .filter-form-field.form-group
       = f.label :start_date_gteq
-      = f.date_select :start_date_gteq, include_blank: true, start_year: 1960, end_year: 1980
-    .filter-form-field
+      = f.date_select :start_date_gteq, include_blank: true, start_year: 1960, end_year: 1980, html: { class: "form-control" }
+    .filter-form-field.form-group
       = f.label :start_date_lteq
-      = f.date_select :start_date_lteq, include_blank: true, start_year: 1960, end_year: 1980
+      = f.date_select :start_date_lteq, include_blank: true, start_year: 1960, end_year: 1980, html: { class: "form-control" }
     = f.submit
 
 = link_to "Volver", acts_path
