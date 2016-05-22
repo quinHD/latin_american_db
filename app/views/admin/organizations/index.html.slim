@@ -1,0 +1,29 @@
+.breadcrumbs
+  = link_to "Administración", admin_root_path
+  span.separator= fa_icon "circle"
+  = link_to "Acciones", admin_acts_path
+  span.separator= fa_icon "circle"
+  = "Organizaciones"
+section.action-container
+  .section-header
+    h2 = "Administración de organizaciones"
+
+    ul
+      - @organizations.each do |organization|
+        li
+          .organization-tree 
+            h3 = organization.name
+            span = organization.supranational
+            span = organization.supranational
+            span = organization.supranational
+        li
+          ul 
+            - organization.organization_groups.each do |organization_group|
+              li 
+                h4 = organization_group.name
+              li
+                ul
+                  - organization_group.organization_subgroups.each do |organization_subgroup|
+                    li 
+                      h5 = organization_subgroup.name
+
