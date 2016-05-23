@@ -31,7 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Added gems
 gem 'jquery-tablesorter'
 gem 'devise'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 gem 'slim-rails'
 gem 'paranoia'
 gem 'simple_form'
@@ -42,6 +42,7 @@ gem 'pundit'
 gem 'ransack'
 gem 'reform'
 gem 'reform-rails'
+gem 'smarter_csv'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

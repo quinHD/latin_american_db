@@ -1,0 +1,84 @@
+- !ruby/object:ActType
+  attributes:
+    id: 1
+    name: Amenaza
+    description: Amenazas a altos cargos
+    created_at: 2015-10-16 18:26:33.024355000 Z
+    updated_at: 2015-10-16 18:26:33.024355000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 2
+    name: Asaltos/Robos
+    description: Asaltos o robos indistintamente
+    created_at: 2015-10-16 18:26:33.028298000 Z
+    updated_at: 2015-10-16 18:26:33.028298000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 3
+    name: Asesinatos
+    description: Muertes violentas resultado de la acción
+    created_at: 2015-10-16 18:26:33.031029000 Z
+    updated_at: 2015-10-16 18:26:33.031029000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 4
+    name: Atentados Armas de Fuego
+    description: ''
+    created_at: 2015-10-16 18:26:33.033794000 Z
+    updated_at: 2015-10-16 18:26:33.033794000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 5
+    name: Atentados Artefactos Explosivos
+    description: ''
+    created_at: 2015-10-16 18:26:33.036749000 Z
+    updated_at: 2015-10-16 18:26:33.036749000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 6
+    name: Emboscadas
+    description: ''
+    created_at: 2015-10-16 18:26:33.040017000 Z
+    updated_at: 2015-10-16 18:26:33.040017000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 7
+    name: Enfrentamientos armados
+    description: ''
+    created_at: 2015-10-16 18:26:33.042801000 Z
+    updated_at: 2015-10-16 18:26:33.042801000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 8
+    name: Sabotajes
+    description: ''
+    created_at: 2015-10-16 18:26:33.045759000 Z
+    updated_at: 2015-10-16 18:26:33.045759000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 9
+    name: Secuestros personas
+    description: ''
+    created_at: 2015-10-16 18:26:33.048664000 Z
+    updated_at: 2015-10-16 18:26:33.048664000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 10
+    name: Secuestros medios transporte
+    description: ''
+    created_at: 2015-10-16 18:26:33.051396000 Z
+    updated_at: 2015-10-16 18:26:33.051396000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 11
+    name: Propaganda
+    description: ''
+    created_at: 2015-10-16 18:26:33.054307000 Z
+    updated_at: 2015-10-16 18:26:33.054307000 Z
+- !ruby/object:ActType
+  attributes:
+    id: 12
+    name: Fugas
+    description: ''
+    created_at: 2015-10-16 18:26:33.057121000 Z
+    updated_at: 2015-10-16 18:26:33.057121000 Z

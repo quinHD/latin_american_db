@@ -26,6 +26,7 @@ class Act < ActiveRecord::Base
   has_one :place, dependent: :destroy
   accepts_nested_attributes_for :place
   has_many :modifications
+  has_many :sources
 
   has_many :act_organizations_extended
   has_many :act_targets_extended

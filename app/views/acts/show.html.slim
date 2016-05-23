@@ -14,5 +14,6 @@ section.action-container
   = render("acts/partials/authorship") if @act.act_organizations.present?
   = render("acts/partials/typology") if @act.act_targets.present?
   = render("acts/partials/results") if @act.result.present?
+  = render("acts/partials/sources") if @act.sources.present?
 
 = link_to "Volver", acts_path

@@ -238,6 +238,7 @@ GEM
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
     slop (3.6.0)
+    smarter_csv (1.1.0)
     sort_alphabetical (1.0.2)
       unicode_utils (>= 1.2.2)
     spring (1.6.4)
@@ -312,6 +313,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   simple_form
   slim-rails
+  smarter_csv
   spring
   turbolinks
   twitter-bootstrap-rails
