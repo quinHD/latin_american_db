@@ -9,3 +9,17 @@
 .section-header h2 {
   float: left;
 }
+
+.action-container .show {
+  border: solid 1px;
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+.action-container .show div, .action-container .show p {
+  padding-left: 4rem;
+}
+
+.action-container .show label {
+  padding-left: 3rem
+}

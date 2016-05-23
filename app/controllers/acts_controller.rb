@@ -25,7 +25,7 @@ class ActsController < ApplicationController
     else
       @act.build_place
       @act.build_result
-      flash.now[:alert] = "Errores en el formulario"
+      flash.now[:alert] = "Errores en el formulario"  
       render :new
     end
   end

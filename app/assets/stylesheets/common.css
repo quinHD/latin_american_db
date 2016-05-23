@@ -11,10 +11,17 @@ body {
   margin: 0 10%;
 }
 
-ul
-{
+ul {
   padding: 0;
   list-style-type: none;
+}
+
+input {
+  outline:none;
+}
+
+p {
+  overflow: scroll;
 }
 
 .main_container {

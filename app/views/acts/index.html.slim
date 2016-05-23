@@ -9,9 +9,8 @@ section.action-container
     - else
       h2 = "Listado de acciones"
     = fa_icon "download", class: "rounded-icon"
-    form
-      = fa_icon "search", class: "rounded-icon search"
-      input.quick-search type="text"
+    = fa_icon "search", class: "rounded-icon search"
+    input.quick-search.display-none type="text"
   table.table.table-striped[summary="Listado de todas las acciones"]
     thead
       tr
@@ -28,9 +27,9 @@ section.action-container
           td = act.id
           td.justified = link_to(act.name, act_path(act))
           td = act.start_date
-          td = act.act_types.map {|at| at.name}.to_sentence
-          td = act.act_organizations.map {|ao| ao.organizable.name}.to_sentence
-          td = act.act_targets.map {|at| at.targetable.name}.to_sentence
+          td = act.act_types.map {|at| at.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
+          td = act.act_organizations.map {|ao| ao.organizable.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
+          td = act.act_targets.map {|at| at.targetable.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
           td = link_to 'Editar', edit_act_path(act)
           td = link_to 'Borrar', act_path(act), method: :delete, data: { confirm: '¿Estás seguro?' }
          
@@ -42,3 +41,8 @@ javascript:
       success: function(response) { console.log(response) }
     });
   });
+
+  $(".rounded-icon.search").on("click", function () {
+    $(".quick-search").animate({width: "toggle"});
+    $(".rounded-icon.search").toggleClass("hide-border");
+  })

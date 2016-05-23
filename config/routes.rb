@@ -17,7 +17,6 @@ Rails.application.routes.draw do
       end
     end
   end
-
   resources :acts do
     collection do 
       get "filter"
