@@ -2,7 +2,7 @@
   = link_to "Acciones", acts_path
   span.separator= fa_icon "circle"
   = "Listado"
-section.action-container
+section#acts-list.action-container
   .section-header
     - if params[:q]
       h2 = "Listado de acciones filtradas " 
@@ -14,35 +14,35 @@ section.action-container
   table.table.table-striped[summary="Listado de todas las acciones"]
     thead
       tr
-        th Id
-        th Nombre
-        th Fecha Inicio
-        th Tipo
-        th Organizacion
-        th Objetivo
+        th.sort data-sort="index" #
+        th.sort data-sort="name" Nombre
+        th.sort data-sort="start-date" Fecha Inicio
+        th.sort data-sort="act-type" Tipo
+        th.sort data-sort="organization" Organizacion
+        th.sort data-sort="target" Objetivo
         th[colspan="2"] Comandos
-    tbody
-      - @acts.each do |act|
+    tbody.list
+      - @acts.each_with_index do |act, i|
         tr
-          td = act.id
-          td.justified = link_to(act.name, act_path(act))
-          td = act.start_date
-          td = act.act_types.map {|at| at.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
-          td = act.act_organizations.map {|ao| ao.organizable.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
-          td = act.act_targets.map {|at| at.targetable.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
+          td.index = i+1
+          td.justified = link_to(act.name, act_path(act), class: "name")
+          td.start-date = act.start_date
+          td.act-type = act.act_types.map {|at| at.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
+          td.organization = act.act_organizations.map {|ao| ao.organizable.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
+          td.target = act.act_targets.map {|at| at.targetable.name}.to_sentence(last_word_connector: " y ", two_words_connector: " y " )
           td = link_to 'Editar', edit_act_path(act)
           td = link_to 'Borrar', act_path(act), method: :delete, data: { confirm: '¿Estás seguro?' }
          
 javascript:
   $(".quick-search").on("keyup", function () {
-    $.ajax({
-      url: "/acts/search/",
-      data: { key: $(".quick-search").val() },
-      success: function(response) { console.log(response) }
-    });
+    var query = $(this).val();
+    userList.search(query);
   });
 
   $(".rounded-icon.search").on("click", function () {
     $(".quick-search").animate({width: "toggle"});
     $(".rounded-icon.search").toggleClass("hide-border");
   })
+
+  var options = { valueNames: ['id', 'name', 'start-date', 'act-type', 'organization', 'target'] };
+  var userList = new List('acts-list', options);
